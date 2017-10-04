@@ -1,0 +1,72 @@
+@import "../../_variables";
+
+ 
+div#cwTernaryTable {
+  table{
+    
+    margin: 1em 0;
+    width: 100%;
+    overflow: hidden;  
+    background: @cwBodyBackgroundColor;
+    color: @cwFontTextColor;
+
+    thead{
+      th {
+        border: @cwPropertiesContainerBorderColor;
+        background-color: @cwPropertiesTableHeaderBackgroundColor;
+        color: @cwListBoxPropertyHeaderTextColor;
+        padding: @cwHeaderPadding;  
+        text-colour: @cwPropertiesTableHeaderTextColor;
+        text-size: @cwFontMenuTextSize;
+        
+        div.arrow-down{
+          width: 0;
+          height: 0;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 10px solid @cwPropertiesTableHeaderTextColor;
+          display:inline-block;
+        }
+        
+        div.arrow-up{
+          width: 0;
+          height: 0;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-bottom: 10px solid @cwPropertiesTableHeaderTextColor;
+          display:inline-block;
+        }
+      }
+    }
+
+    tbody{
+      tr {
+        border: @cwPropertiesContainerBorderColor; 
+        &:nth-child(odd) { // highlight the odd rows with a color
+          background-color: @cwEditPropertiesValueHoverBackgroundColor;
+        }  
+      }
+    
+      td {
+        display: table-cell; 
+        word-wrap: break-word;
+        max-width: 7em;     
+        button{
+          width:100%;
+        }
+        input{
+          width: 99%;
+          text-align: center;
+        }
+      } 
+    }
+    thead th, tbody td {
+      text-align: center;
+      margin: .5em 1em;  
+      display: table-cell; 
+      padding: 0,2em;
+    } 
+  }
+}    
+
+

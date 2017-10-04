@@ -1,0 +1,40 @@
+<div><i class="fa fa-search" aria-hidden="true"></i><input type="text" placeholder="{{'Search ' + getLabelRow() + ' or ' + getLabelCell()}}" ng-model="searchTextRow" />
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">{{getTitle()}}</th>
+      <th ng-repeat="column in columns"><a href="{{column.link}}">{{column.label}}</a></th>
+    </tr>
+    <tr><th colspan="3"><input type="text" placeholder="{{'Search ' + getLabelRow() + ' or ' + getLabelCell()}}" ng-model="searchTextRow" /></th></tr>
+  </thead>
+  <tbody>  
+  
+  <tr ng-repeat="line in lines | filter:filterLines(searchTextRow)">
+    <td><a href="{{line.link}}">{{line.label}}</a></td>
+    <td ng-repeat="column in columns | orderBy:sortColumn:reverseSort">
+      <div ng-style="{{getStyle(obj)}}" ng-repeat="obj in getObjectForLineAndColumns(line.object_id,column.object_id) "><a href="{{obj.link}}">{{obj.label}}</a></div>
+    </td>
+  </tr>    
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
