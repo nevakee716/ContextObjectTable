@@ -5,13 +5,22 @@
 
   "use strict";
   // constructor
-  var cwContextTable = function(propertiesStyleMap) {
+  var cwContextTable = function(propertiesStyleMap,rowTitle,columnTitle,cellTitle) {
     this.lines = {};
     this.columns = {}; 
     this.linesArray = [];
     this.columnsArray = [];
     this.cells = [];
+    this.rowTitle = rowTitle;
+    this.columnTitle = columnTitle;
+    this.cellTitle = cellTitle;
     this.propertiesStyleMap = propertiesStyleMap;
+    this.cellFilter = {};
+    this.cellFilter.objects = [];
+    this.rowFilter = {};
+    this.rowFilter.objects = [];
+    this.columnFilter = {};
+    this.columnFilter.objects = [];        
   };
 
   cwContextTable.prototype.addLine = function(line,label) {
@@ -34,8 +43,9 @@
     return null; 
   };
 
-  cwContextTable.prototype.addCell = function(cell,rowID,columnID,label,ctxObj) {
+  cwContextTable.prototype.addCell = function(cell,rowID,columnID,label,ctxObj,edited) {
     if(cell.length > 0) {
+      cell[0].edited = edited;
       cell[0].columnID = columnID;
       cell[0].rowID = rowID;
       cell[0].label = label;
@@ -43,6 +53,16 @@
       cell[0].link = cwAPI.getSingleViewHash(cell[0].objectTypeScriptName, cell[0].object_id);
       this.cells.push(cell[0]);
     }
+  };
+
+  cwContextTable.prototype.addCellFromEdit = function(cell,rowID,columnID) {
+    cell.edited = true;
+    cell.columnID = columnID;
+    cell.rowID = rowID;
+    cell.label = cell.label;
+    cell.ctxProperties = null;
+    cell.link = cell.link;
+    this.cells.push(cell);
   };
 
   cwContextTable.prototype.clearRowAndColumn = function() {
@@ -58,7 +78,6 @@
       }
     }
   };
-
 
 
   cwContextTable.prototype.addLineAndRefresh = function(line) {
@@ -101,17 +120,19 @@
       $scope.columns = that.columnsArray;
 
       $scope.getTitle = function() {
-        return "HK Short term view";
+        return self.title;
       };
       $scope.getLabelRow = function() {
-        return "Business Function";
+        return self.rowTitle;
       };
       $scope.getLabelCell = function() {
-        return "Application";
+        return self.cellTitle;
       };
  
 
-
+      $scope.rowFilter = self.rowFilter;
+      $scope.columnFilter = self.columnFilter;
+      $scope.cellFilter = self.cellFilter;            
       $scope.searchTextCell = {};
 
 
@@ -153,6 +174,12 @@
       };
 
 
+      $scope.editAddCell = function(row,column,cell) {
+        self.addCellFromEdit(cell,row.object_id,column.object_id);
+      };
+
+
+
       $scope.remove = function(data) {
         var newEvent = document.createEvent('Event');
         newEvent.data = data;
@@ -173,16 +200,13 @@
 
       $scope.getStyle = function(obj) {
         var returnStyle = {};
-        self.propertiesStyleMap.forEach(function(property) {
-          if(obj.ctxProperties.hasOwnProperty(property.scriptname.toLowerCase())) {
-            var value = obj.ctxProperties[property.scriptname.toLowerCase()];
-            if(property.hasOwnProperty(value.toLowerCase())) {
-              returnStyle = property[value.toLowerCase()];
-            }
+        if(obj.ctxProperties && obj.ctxProperties.hasOwnProperty(self.propertiesStyleMap.scriptname.toLowerCase())) {
+          var value = obj.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
+          if(self.propertiesStyleMap.hasOwnProperty(value.toLowerCase())) {
+            return self.propertiesStyleMap[value.toLowerCase()];
           }
-        });
-
-        return returnStyle;
+        }
+        return "";
       };
 
       // in case of single Page, hide 1st column and preselect object

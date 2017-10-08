@@ -10,35 +10,24 @@
       cwApi.extend(this, cwApi.cwLayouts.CwLayout, options, viewSchema);        
       cwApi.registerLayoutForJSActions(this);
       this.lockState = false;
-      this.RowNodeID = "business_function_20123_1664918668";
-      this.ColumnNodeID = "business_perimeter_20130_987496863";
-      this.CellNodeID = "application_20126_1496180330";
-      this.propertiesStyleMap = [
-        { 'scriptname' : 'LIFECYCLESTATUS',
-          "gris" : {"background-color" : "lightgray", "color": "black"},
-          "vert" : {"background-color": "lightgreen", "color": "black"},
-          "noir" : {"background-color": "black", "color": "white"}
-        }];
+      this.RowNodeID = this.options.CustomOptions["RowNodeID"];//"business_function_20123_1664918668";
+      this.ColumnNodeID = this.options.CustomOptions["ColumnNodeID"];//"business_perimeter_20130_987496863";
+      this.CellNodeID  = this.options.CustomOptions["CellNodeID"];// "application_20126_1496180330";
+      this.EVODUrl = this.options.CustomOptions["EVOD-url"];
+      this.propertiesStyleMap = JSON.parse(this.options.CustomOptions["propertiesStyleMap"]); //
       this.layoutsByNodeId = {};
-      this.cwContextTable = new cwApi.customLibs.cwContextObjectTable.cwContextTable(this.propertiesStyleMap); 
+      this.isLoaded = false;
+      this.cwContextTable = new cwApi.customLibs.cwContextObjectTable.cwContextTable(this.propertiesStyleMap,this.viewSchema.NodesByID[this.RowNodeID].NodeName,this.viewSchema.NodesByID[this.ColumnNodeID].NodeName,this.viewSchema.NodesByID[this.CellNodeID].NodeName); 
     };
 
     cwContextObjectTable.prototype.drawAssociations = function (output, associationTitleText, object) {
       output.push('<div id="cwContextObjectTable" class="bootstrap-iso" style= "display: flex"></div></div><div id="cwContextTable"></div>');
       var objectTypeScriptName0,objectTypeScriptName1,objectTypeScriptName2;
-
-      // if((cwApi.isIndexPage && cwApi.isIndexPage()) || this.item.objectTypeScriptName === undefined || true) {
-      //   this.cwContextTable.Title.objectTypeScriptName = this.viewSchema.NodesByID[this.mmNode.NodeID].ObjectTypeScriptName.toUpperCase();
-      //   this.cwContextTable.Column.Label = this.getNodeLabel();
-      //   this.cwContextTable.Row.Label = this.getNodeLabel();
-      // } else {
-      //   this.cwContextTable.NodesFilter0.objectTypeScriptName = this.item.objectTypeScriptName.toUpperCase();
-      //   this.cwContextTable.NodesFilter1.objectTypeScriptName = this.viewSchema.NodesByID[this.mmNode.NodeID].ObjectTypeScriptName.toUpperCase();
-      //   this.cwContextTable.NodesFilter2.objectTypeScriptName = this.getSecondLvlNode();
-      // }     
+  
 
       this.parseObjects(object.associations[this.nodeID]);
-      //this.getObjectFromObjectypes(this.cwContextTable.NodesFilter0.objectTypeScriptName,this.cwContextTable.NodesFilter1.objectTypeScriptName,this.cwContextTable.NodesFilter2.objectTypeScriptName,this.item);
+      this.cwContextTable.title = this.displayProperty.getDisplayString(object);
+      this.getObjectFromObjectypes(this.viewSchema.NodesByID[this.RowNodeID].ObjectTypeScriptName,this.viewSchema.NodesByID[this.ColumnNodeID].ObjectTypeScriptName,this.viewSchema.NodesByID[this.CellNodeID].ObjectTypeScriptName);
     };
 
     cwContextObjectTable.prototype.parseObjects = function (objects) {
@@ -46,7 +35,7 @@
       objects.forEach(function(object) {
         idRow = self.cwContextTable.addLine(object.associations[self.RowNodeID],self.getItemDisplayString(object.associations[self.RowNodeID]));
         idColumn = self.cwContextTable.addColumn(object.associations[self.ColumnNodeID],self.getItemDisplayString(object.associations[self.ColumnNodeID]));
-        self.cwContextTable.addCell(object.associations[self.CellNodeID], idRow, idColumn,self.getItemDisplayString(object.associations[self.CellNodeID]),object);
+        self.cwContextTable.addCell(object.associations[self.CellNodeID], idRow, idColumn,self.getItemDisplayString(object.associations[self.CellNodeID]),object,false);
       });
       this.cwContextTable.clearRowAndColumn();    
     };
@@ -77,13 +66,13 @@
 
 
 
-   cwContextObjectTable.prototype.getObjectFromObjectypes = function(objectTypeScriptName0, objectTypeScriptName1, objectTypeScriptName2,item) {
+   cwContextObjectTable.prototype.getObjectFromObjectypes = function(rowObjectTypeScriptName, columnObjectTypeScriptName, cellObjectTypeScriptName) {
       var sendData = {};
       var propertiesToSelect = ["NAME", "ID"];
       var that = this;
       var callbackCount = 0;
 
-      sendData.objectTypeScriptName = objectTypeScriptName0;
+      sendData.objectTypeScriptName = rowObjectTypeScriptName;
       sendData.propertiesToSelect = propertiesToSelect;
 
       cwApi.cwEditProperties.GetObjectsByScriptName(sendData, function(update) {
@@ -94,18 +83,20 @@
             for (var i = 0; i < update[key].length; i++) {
               object0 = update[key][i];
                 if (object0.hasOwnProperty('properties') && object0.properties.hasOwnProperty("name") && object0.properties.hasOwnProperty("id")) {
-                  that.cwContextTable.NodesFilter0.addfield(key, object0.properties["name"], object0.properties["id"]);
-                  that.cwContextTable.NodesFilter0.label = key;
+                  object0.properties.label = object0.name;
+                  object0.properties.link = cwAPI.getSingleViewHash(rowObjectTypeScriptName, object0.properties.id);
+                  that.cwContextTable.rowFilter.objects.push(object0.properties); 
+                  that.cwContextTable.rowFilter.label = key;
                 } 
             }
           }
         }
-        if (callbackCount === 3) {
+        if (callbackCount === 3 && that.isLoaded) {
           that.createTable();
         }
       });
 
-      sendData.objectTypeScriptName = objectTypeScriptName1;
+      sendData.objectTypeScriptName = columnObjectTypeScriptName;
       cwApi.cwEditProperties.GetObjectsByScriptName(sendData, function(update) {
         var object1;
         for(var key in update) {
@@ -114,18 +105,20 @@
             for (var i = 0; i < update[key].length; i++) {
               object1 = update[key][i];
                 if (object1.hasOwnProperty('properties') && object1.properties.hasOwnProperty("name") && object1.properties.hasOwnProperty("id")) {
-                  that.cwContextTable.NodesFilter1.addfield(key, object1.properties["name"], object1.properties["id"]);
-                  that.cwContextTable.NodesFilter1.label = key;
+                  object1.properties.label = object1.name;
+                  object1.properties.link = cwAPI.getSingleViewHash(columnObjectTypeScriptName, object1.properties.id);
+                  that.cwContextTable.columnFilter.objects.push(object1.properties);
+                  that.cwContextTable.columnFilter.label = key;
                 } 
             }
           }
         }
-        if (callbackCount === 3) {
+        if (callbackCount === 3 && that.isLoaded) {
           that.createTable();
         }
       });
 
-      sendData.objectTypeScriptName = objectTypeScriptName2;
+      sendData.objectTypeScriptName = cellObjectTypeScriptName;
       cwApi.cwEditProperties.GetObjectsByScriptName(sendData, function(update) {
         var object2;
         for(var key in update) {
@@ -134,13 +127,15 @@
             for (var i = 0; i < update[key].length; i++) {
               object2 = update[key][i];
                 if (object2.hasOwnProperty('properties') && object2.properties.hasOwnProperty("name") && object2.properties.hasOwnProperty("id")) {
-                  that.cwContextTable.NodesFilter2.addfield(key, object2.properties["name"], object2.properties["id"]);
-                  that.cwContextTable.NodesFilter2.label = key;
+                  object2.properties.label = object2.name;
+                  object2.properties.link = cwAPI.getSingleViewHash(cellObjectTypeScriptName, object2.properties.id);
+                  that.cwContextTable.cellFilter.objects.push(object2.properties);
+                  that.cwContextTable.cellFilter.label = key;
                 } 
             }
           }
         }
-        if (callbackCount === 3) {
+        if (callbackCount === 3 && that.isLoaded) {
           that.createTable();
         }
       });
@@ -181,38 +176,18 @@
           container.addEventListener('Remove Item', this.removeTernary);  
           container.addEventListener('Add Item', this.createTernary); 
         }
+        
+        var buttonsEdit = document.getElementsByClassName("cw-edit-mode-button-edit");
+        if(buttonsEdit.length > 0) {
+          buttonsEdit[0].addEventListener("click", this.goToEditMode.bind(this), false);  
+        }
+        if(cwAPI.CwMode.Edit = 'edit' && cwAPI.isEditButtonAvailable()) {
+          this.goToEditMode();
+        }
       };
 
-    cwContextObjectTable.prototype.createTernary = function (event) {
-      if(this.isLocked() === false && event.callback) {
-        this.lock();
-        if(event.data && event.data.hasOwnProperty('ot0') && event.data.ot0 && event.data.hasOwnProperty('ot1') && event.data.ot1 && event.data.hasOwnProperty('ot2') && event.data.ot2) {
-
-          var url = this.options.CustomOptions['EVOD-url'] + "ternarycreation?model=" + cwAPI.cwConfigs.ModelFilename;
-          url = url + "&ot0=" + this.cwContextTable.NodesFilter0.objectTypeScriptName + "&id0=" + event.data.ot0.id;
-          url = url + "&ot1=" + this.cwContextTable.NodesFilter1.objectTypeScriptName + "&id1=" + event.data.ot1.id;
-          url = url + "&ot2=" + this.cwContextTable.NodesFilter2.objectTypeScriptName + "&id2=" + event.data.ot2.id;
-          url = url + "&command=create"; 
-
-          var line = [{},{},{}];
-          line[0].id = event.data.ot0.id;
-          line[1].id = event.data.ot1.id;
-          line[2].id = event.data.ot2.id;
-          line[0].name = event.data.ot0.name;
-          line[1].name = event.data.ot1.name;
-          line[2].name = event.data.ot2.name;
-
-          var that = this;
-          this.sendTernaryRequest(url,function() {
-            event.callback(line,that.options.CustomOptions['Quick-Add']);
-            that.unlock();
-          });
-        }
-        else {
-          this.unlock();
-          cwApi.notificationManager.addNotification("Please Select All fields",'error'); 
-        }
-      }
+    cwContextObjectTable.prototype.goToEditMode = function (event) {
+      debugger;
     };
 
 
@@ -256,7 +231,12 @@
     cwContextObjectTable.prototype.applyJavaScript = function () {
         var that = this;
         cwApi.CwAsyncLoader.load('angular', function () {
-          that.createTable();
+          if(that.isLoaded) {
+            that.createTable();
+          } else {
+            that.isLoaded = true;
+          }
+          
         });
     };
 

@@ -1,7 +1,7 @@
 div#cwContextTable table {
   margin: 1em 0;
-  width: 100%;
-  overflow: hidden;
+/*  width: 100%;
+  overflow: hidden;*/
   background: white;
   color: #424242;
   border: #039be5;
@@ -29,7 +29,15 @@ div#cwContextTable input{
 }
 
 div#cwContextTable table, th, td {
-   border: 1px solid #2980bc;
+   border: 4px solid #2980bc;
+}
+
+div#cwContextTable div.editDiv {
+  display: flex;
+}
+
+div#cwContextTable div.editDiv button{
+  width:10%;
 }
 
 div#cwContextTable table tbody td {
