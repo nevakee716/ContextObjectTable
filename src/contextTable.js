@@ -45,7 +45,7 @@
 
   cwContextTable.prototype.addCell = function(cell,rowID,columnID,label,ctxObj,edited) {
     if(cell.length > 0) {
-      cell[0].edited = edited;
+      cell[0].edited = 'none';
       cell[0].columnID = columnID;
       cell[0].rowID = rowID;
       cell[0].label = label;
@@ -56,11 +56,11 @@
   };
 
   cwContextTable.prototype.addCellFromEdit = function(cell,rowID,columnID) {
-    cell.edited = true;
+    cell.edited = 'add';
     cell.columnID = columnID;
     cell.rowID = rowID;
     cell.label = cell.label;
-    cell.ctxProperties = null;
+    cell.ctxProperties = {};
     cell.link = cell.link;
     cell.object_id = cell.object_id;
     this.cells.push(cell);
@@ -134,7 +134,7 @@
 
       $scope.lines = that.linesArray;
       $scope.columns = that.columnsArray;
-
+      $scope.propertiesStyleMap = self.propertiesStyleMap;
       $scope.getTitle = function() {
         return self.title;
       };
@@ -198,6 +198,10 @@
         }    
       };
 
+      $scope.editProperties = function(obj,scriptname,value) {
+        obj.ctxProperties[scriptname.toLowerCase()] = value;
+        obj.edited = 'edited';
+      };
 
 
       $scope.remove = function(data) {
@@ -222,8 +226,8 @@
         var returnStyle = {};
         if(obj.ctxProperties && obj.ctxProperties.hasOwnProperty(self.propertiesStyleMap.scriptname.toLowerCase())) {
           var value = obj.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
-          if(self.propertiesStyleMap.hasOwnProperty(value.toLowerCase())) {
-            return self.propertiesStyleMap[value.toLowerCase()];
+          if(self.propertiesStyleMap.properties.hasOwnProperty(value.toLowerCase())) {
+            return self.propertiesStyleMap.properties[value.toLowerCase()];
           }
         }
         return "";
@@ -255,7 +259,7 @@
       $scope.getObjectForLineAndColumns = function (rowID,columnID,filter) {
         var result = [];
         self.cells.forEach(function(cell) {
-          if(cell.columnID == columnID && cell.rowID == rowID) {
+          if(cell.columnID == columnID && cell.rowID == rowID  && cell.edited != "deleted") {
             if(filter === undefined || cell.name.toLowerCase().includes(filter.toLowerCase())) {
               result.push(cell);
             }

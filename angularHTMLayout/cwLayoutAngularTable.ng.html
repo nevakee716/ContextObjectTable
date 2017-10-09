@@ -3,32 +3,66 @@
   <thead>
     <tr>
       <th rowspan="2">{{getTitle()}}</th>
-      <th ng-repeat="column in columns"><a href="{{column.link}}">{{column.label}}</a></th>
+      <th colspan="{{columns.length}}">
+        <div class="legend">
+          <div> {{propertiesStyleMap.label}} : </div>
+          <div ng-repeat="(key, value) in propertiesStyleMap.properties" ng-style="{{value}}">{{key}}</div>
+        <div/>
+      </th>
     </tr>
-    <tr><th colspan="3"><input type="text" placeholder="{{'Search ' + getLabelRow() + ' or ' + getLabelCell()}}" ng-model="searchTextRow" /></th></tr>
+    <tr>
+    <th ng-repeat="column in columns"><a href="{{column.link}}">{{column.label}}</a></th>
+      <th>
+        <div class=editDiv>
+          <select ng-model="addedColumn" ng-options="column.name for column in columnFilter.objects | filter:searchTextRow">
+            <option value=""> -- Choose {{getLabelColumn()}} to add --</option>
+          </select>
+          <button ng-click="columns.push(addedColumn)">
+            <i class="fa fa-plus" aria-hidden="true"/>
+          </button>
+        </div>
+      </th>
+    </tr>
   </thead>
   <tbody>  
   
   <tr ng-repeat="line in lines | filter:filterLines(searchTextRow)">
     <td><a href="{{line.link}}">{{line.label}}</a></td>
     <td ng-repeat="column in columns | orderBy:sortColumn:reverseSort">
-      <div ng-style="{{getStyle(obj)}}" ng-repeat="obj in getObjectForLineAndColumns(line.object_id,column.object_id) "><a href="{{obj.link}}">{{obj.label}}</a></div>
+      <div class="cellElement" ng-style="getStyle(obj)" ng-repeat="obj in getObjectForLineAndColumns(line.object_id,column.object_id)">
+        <div>
+          <a href="{{obj.link}}">{{obj.label}}</a>
+          <i ng-click="obj.edited = 'deleted';" class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <div class="editStyle">
+          <button ng-click="editProperties(obj,propertiesStyleMap.scriptname,key)" ng-repeat="(key, value) in propertiesStyleMap.properties" ng-style="{{value}}">{{key}}</button>
+        </div>
+      </div>
+      <div class=editDiv>
+        <select ng-model="addedCell" ng-options="cell.name for cell in cellFilter.objects | filter:searchTextRow">
+          <option value=""> -- Choose {{getLabelCell()}} to add --</option>
+        </select>
+        <button ng-click="editAddCell(line,column,addedCell)">
+          <i class="fa fa-plus" aria-hidden="true"/>
+        </button>
+      </div>
     </td>
   </tr>    
+  <tr>
+    <td>
+      <div class=editDiv>
+        <select ng-model="addedRow" ng-options="row.name for row in rowFilter.objects | filter:searchTextRow">
+          <option value=""> -- Choose {{getLabelRow()}} to add --</option>
+        </select>
+        <button ng-click="lines.push(addedRow)">
+          <i class="fa fa-plus" aria-hidden="true"/>
+        </button>
+      </div>
+    </td>
+  </tr>
   </tbody>
 </table>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
