@@ -1,7 +1,7 @@
 div#cwContextTable table {
   margin: 1em 0;
-/*  width: 100%;
-  overflow: hidden;*/
+  width: 100%;
+  /*overflow: hidden;*/
   background: white;
   color: #424242;
   border: #039be5;

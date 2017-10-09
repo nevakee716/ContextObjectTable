@@ -62,10 +62,26 @@
     cell.label = cell.label;
     cell.ctxProperties = null;
     cell.link = cell.link;
+    cell.object_id = cell.object_id;
     this.cells.push(cell);
   };
 
-  cwContextTable.prototype.clearRowAndColumn = function() {
+ 
+
+
+  cwContextTable.prototype.isCellAlreadyExist = function (rowID,columnID,idToCompare) {
+    var result = [];
+    var status = false;
+    this.cells.forEach(function(cell) {
+      if(cell.columnID == columnID && cell.rowID == rowID && cell.object_id === idToCompare) {
+        status = true;
+      }
+    });
+    return status;
+  };
+
+
+ cwContextTable.prototype.clearRowAndColumn = function() {
     var id;
     for (id in this.lines) {
       if (this.lines.hasOwnProperty(id)) {
@@ -103,13 +119,13 @@
     }
   };
 
+
   cwContextTable.prototype.createAngularTable = function($container, container, item) {
     var loader = cwApi.CwAngularLoader,
       templatePath;
     loader.setup();
     var that = this;
     var self = this;
-
 
     templatePath = cwAPI.getCommonContentPath() + '/html/angularLayouts/cwLayoutAngularTable.ng.html' + '?' + Math.random();
 
@@ -175,7 +191,11 @@
 
 
       $scope.editAddCell = function(row,column,cell) {
-        self.addCellFromEdit(cell,row.object_id,column.object_id);
+        if(!self.isCellAlreadyExist(row.object_id,column.object_id,cell.object_id)) {
+          self.addCellFromEdit(cell,row.object_id,column.object_id);
+        } else {
+          cwApi.notificationManager.addNotification(self.cellTitle + " " + cell.label + " already exist",'error');
+        }    
       };
 
 
