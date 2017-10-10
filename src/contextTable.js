@@ -20,7 +20,8 @@
     this.rowFilter = {};
     this.rowFilter.objects = [];
     this.columnFilter = {};
-    this.columnFilter.objects = [];        
+    this.columnFilter.objects = [];     
+    this.display = false;
   };
 
   cwContextTable.prototype.addLine = function(line,label) {
@@ -56,13 +57,13 @@
   };
 
   cwContextTable.prototype.addCellFromEdit = function(cell,rowID,columnID) {
-    cell.edited = 'add';
+    cell.edited = 'added';
     cell.columnID = columnID;
     cell.rowID = rowID;
     cell.label = cell.label;
     cell.ctxProperties = {};
     cell.link = cell.link;
-    cell.object_id = cell.object_id;
+    cell.object_id = cell.id;
     this.cells.push(cell);
   };
 
@@ -72,9 +73,15 @@
   cwContextTable.prototype.isCellAlreadyExist = function (rowID,columnID,idToCompare) {
     var result = [];
     var status = false;
+    var self = this;
     this.cells.forEach(function(cell) {
       if(cell.columnID == columnID && cell.rowID == rowID && cell.object_id === idToCompare) {
         status = true;
+        if(cell.edited === "deleted") {
+          cell.edited = 'none';
+        } else {
+          cwApi.notificationManager.addNotification(self.cellTitle + " " + cell.label + " already exist",'error');          
+        }
       }
     });
     return status;
@@ -178,6 +185,16 @@
         }
       };
 
+      $scope.display = function(style) {
+        var r = {};
+        if(self.editMode) {
+          r.display = style;
+        } else {        
+          r.display = "none";
+        }
+        return r;
+      };
+
       $scope.add = function(data) {
         var newEvent = document.createEvent('Event');
         newEvent.data = data;
@@ -191,16 +208,14 @@
 
 
       $scope.editAddCell = function(row,column,cell) {
-        if(!self.isCellAlreadyExist(row.object_id,column.object_id,cell.object_id)) {
+        if(!self.isCellAlreadyExist(row.object_id,column.object_id,cell.id)) {
           self.addCellFromEdit(cell,row.object_id,column.object_id);
-        } else {
-          cwApi.notificationManager.addNotification(self.cellTitle + " " + cell.label + " already exist",'error');
-        }    
+        } 
       };
 
       $scope.editProperties = function(obj,scriptname,value) {
         obj.ctxProperties[scriptname.toLowerCase()] = value;
-        obj.edited = 'edited';
+        if(obj !== 'added') obj.edited = 'edited';
       };
 
 
@@ -223,14 +238,19 @@
       };
 
       $scope.getStyle = function(obj) {
-        var returnStyle = {};
+        var returnStyle = "";
         if(obj.ctxProperties && obj.ctxProperties.hasOwnProperty(self.propertiesStyleMap.scriptname.toLowerCase())) {
           var value = obj.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
           if(self.propertiesStyleMap.properties.hasOwnProperty(value.toLowerCase())) {
-            return self.propertiesStyleMap.properties[value.toLowerCase()];
+            returnStyle = self.propertiesStyleMap.properties[value.toLowerCase()];
           }
         }
-        return "";
+        if(self.editMode === true) {
+          returnStyle["justify-content"] = "space-between";
+        } else {
+          returnStyle["justify-content"] = "center";
+        }
+        return returnStyle;
       };
 
       // in case of single Page, hide 1st column and preselect object

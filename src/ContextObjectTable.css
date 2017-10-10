@@ -16,10 +16,18 @@ div#cwContextTable table tbody tr {
   border: #bfbfbf;
 }
 
+div#cwContextTable i.fa-times {
+  color: red;
+}
+
 div#cwContextTable th {
   font-size: 2.5em;
-    background-color: lightblue;
-    width:300px;
+  background-color: lightblue;
+  width: 300px;
+}
+
+div#cwContextTable td {
+  width: 300px;
 }
 
 div#cwContextTable div.legend {
@@ -29,6 +37,10 @@ div#cwContextTable div.legend {
 div#cwContextTable div.cellElement {
   display:flex;
   justify-content: space-between;
+}
+
+div#cwContextTable div.cellElement div{
+  display:flex;
 }
 
 div#cwContextTable div.editStyle {

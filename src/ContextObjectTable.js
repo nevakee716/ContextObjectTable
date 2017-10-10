@@ -187,7 +187,8 @@
       };
 
     cwContextObjectTable.prototype.goToEditMode = function (event) {
-      debugger;
+      this.cwContextTable.editMode = true;
+      this.cwContextTable.refresh();
     };
 
 
