@@ -5,19 +5,19 @@
       <th rowspan="2">{{getTitle()}}</th>
       <th colspan="{{columns.length}}">
         <div class="legend">
-          <div> {{propertiesStyleMap.label}} : </div>
+          <div> {{propertiesStyleMap.label}} :  </div>
           <div ng-repeat="(key, value) in propertiesStyleMap.properties" ng-style="{{value}}">{{key}}</div>
         <div/>
       </th>
     </tr>
     <tr>
-    <th ng-repeat="column in columns"><a href="{{column.link}}">{{column.label}}</a></th>
-      <th>
-        <div class=editDiv>
-          <select ng-model="addedColumn" ng-options="column.name for column in columnFilter.objects | filter:searchTextRow">
+      <th ng-repeat="column in columns"><a href="{{column.link}}">{{column.label}}</a></th>
+      <th ng-style="display('jki')">
+        <div class="editDiv">
+          <select ng-model="addedColumn" ng-options="columnF.name for columnF in columnFilter.objects | filter:searchTextRow">
             <option value=""> -- Choose {{getLabelColumn()}} to add --</option>
           </select>
-          <button ng-click="columns.push(addedColumn)">
+          <button ng-click="editAddColumn(columnF)">
             <i class="fa fa-plus" aria-hidden="true"/>
           </button>
         </div>
@@ -32,13 +32,13 @@
       <div class="cellElement" ng-style="getStyle(obj)" ng-repeat="obj in getObjectForLineAndColumns(line.object_id,column.object_id)">
         <div>
           <a href="{{obj.link}}">{{obj.label}}</a>
-          <i ng-click="obj.edited = 'deleted';" class="fa fa-times" aria-hidden="true"></i>
+          <i ng-style="display('flex')" ng-click="obj.edited = 'deleted';" class="fa fa-times" aria-hidden="true"></i>
         </div>
-        <div class="editStyle">
+        <div class="editStyle" ng-style="display('flex')">
           <button ng-click="editProperties(obj,propertiesStyleMap.scriptname,key)" ng-repeat="(key, value) in propertiesStyleMap.properties" ng-style="{{value}}">{{key}}</button>
         </div>
       </div>
-      <div class=editDiv>
+      <div class=editDiv ng-style="display('flex')">
         <select ng-model="addedCell" ng-options="cell.name for cell in cellFilter.objects | filter:searchTextRow">
           <option value=""> -- Choose {{getLabelCell()}} to add --</option>
         </select>
@@ -48,13 +48,13 @@
       </div>
     </td>
   </tr>    
-  <tr>
+  <tr ng-style="display('un')">
     <td>
       <div class=editDiv>
         <select ng-model="addedRow" ng-options="row.name for row in rowFilter.objects | filter:searchTextRow">
           <option value=""> -- Choose {{getLabelRow()}} to add --</option>
         </select>
-        <button ng-click="lines.push(addedRow)">
+        <button ng-click="editAddRow(row)">
           <i class="fa fa-plus" aria-hidden="true"/>
         </button>
       </div>

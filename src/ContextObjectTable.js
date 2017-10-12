@@ -181,6 +181,13 @@
         if(buttonsEdit.length > 0) {
           buttonsEdit[0].addEventListener("click", this.goToEditMode.bind(this), false);  
         }
+
+
+        var buttonSave = document.getElementById("cw-edit-mode-button-save");
+        if(buttonSave) {
+          buttonSave.addEventListener("click", this.save.bind(this), false);  
+        }
+
         if(cwAPI.CwMode.Edit = 'edit' && cwAPI.isEditButtonAvailable()) {
           this.goToEditMode();
         }
@@ -189,6 +196,30 @@
     cwContextObjectTable.prototype.goToEditMode = function (event) {
       this.cwContextTable.editMode = true;
       this.cwContextTable.refresh();
+    };
+
+    cwContextObjectTable.prototype.save = function (event) {
+      var cell, i, report = {};
+      report.added = [];
+      report.edited = [];
+      report.deleted = [];
+
+      for (i = 0; i < this.cwContextTable.cells.length; i++) {
+        cell = this.cwContextTable.cells[i];
+        if(cell.edited = 'added') {
+          cell.edited = 'none';
+          report.added.push(cell);
+        }
+        if(cell.edited = 'edited') {
+          cell.edited = 'none';
+          report.edited.push(cell);
+        }
+        if(cell.edited = 'deleted') {
+          cell.edited = 'none';
+          report.deleted.push(cell);
+        }
+      };
+      debugger;
     };
 
 
@@ -230,15 +261,27 @@
     };
 
     cwContextObjectTable.prototype.applyJavaScript = function () {
-        var that = this;
-        cwApi.CwAsyncLoader.load('angular', function () {
-          if(that.isLoaded) {
-            that.createTable();
-          } else {
-            that.isLoaded = true;
-          }
-          
-        });
+      var that = this;
+      cwApi.CwAsyncLoader.load('angular', function () {
+        if(that.isLoaded) {
+          that.createTable();
+        } else {
+          that.isLoaded = true;
+        }
+        
+      });
+
+      $('tbody').scroll(function(e) { //detect a scroll event on the tbody
+      /*
+      Setting the thead left value to the negative valule of tbody.scrollLeft will make it track the movement
+      of the tbody element. Setting an elements left value to that of the tbody.scrollLeft left makes it maintain       it's relative position at the left of the table.    
+      */
+      $('thead').css("left", -$("tbody").scrollLeft()); //fix the thead relative to the body scrolling
+      $('thead th:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first cell of the header
+      $('tbody td:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first column of tdbody
+  });
+
+
     };
 
  

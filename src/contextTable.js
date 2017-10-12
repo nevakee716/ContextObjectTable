@@ -27,6 +27,7 @@
   cwContextTable.prototype.addLine = function(line,label) {
     if(line.length > 0) {
       line[0].label = label;
+      line[0].edited = "none";
       line[0].link = cwAPI.getSingleViewHash(line[0].objectTypeScriptName, line[0].object_id);
       this.lines[line[0].object_id] = line[0];
       return line[0].object_id; 
@@ -37,6 +38,7 @@
   cwContextTable.prototype.addColumn = function(column,label) {
     if(column.length > 0) {
       column[0].label = label;
+      column[0].edited = "none";
       column[0].link = cwAPI.getSingleViewHash(column[0].objectTypeScriptName, column[0].object_id);
       this.columns[column[0].object_id] = column[0];
       return column[0].object_id; 
@@ -163,7 +165,7 @@
         var getObjectForLineAndColumns = $scope.getObjectForLineAndColumns;
         return function (item) {
           var j,cells;
-          if(searchTextCell === undefined || item.name.toLowerCase().includes(searchTextCell.toLowerCase())) return true;
+          if(self.editMode || searchTextCell === undefined || item.name.toLowerCase().includes(searchTextCell.toLowerCase())) return true;
           for(j = 0; j < self.columnsArray.length; j++) {
             if(searchTextCell != "") {
               cells = getObjectForLineAndColumns(item.object_id,self.columnsArray[j].object_id,searchTextCell);
@@ -218,6 +220,29 @@
         if(obj !== 'added') obj.edited = 'edited';
       };
 
+      $scope.editAddColumn = function(column) {
+        column.object_id = column.id;
+        for (var i = 0; i < self.columnsArray.length; i++) {
+          if(self.columnsArray[i].object_id === column.id) {
+            cwApi.notificationManager.addNotification(self.columnTitle + " already exist",'error');  
+            return;
+          }
+        };
+        column.edited = "added";
+        self.columnsArray.push(column);
+      };
+
+      $scope.editAddRow = function(row) {
+        row.object_id = row.id;
+        for (var i = 0; i < self.linesArray.length; i++) {
+          if(self.linesArray[i].object_id === row.id) {            
+            cwApi.notificationManager.addNotification(self.rowTitle + " already exist",'error');
+            return;
+          }
+        };
+        row.edited = "added";
+        self.linesArray.push(row);
+      };
 
       $scope.remove = function(data) {
         var newEvent = document.createEvent('Event');
@@ -238,7 +263,7 @@
       };
 
       $scope.getStyle = function(obj) {
-        var returnStyle = "";
+        var returnStyle = {};
         if(obj.ctxProperties && obj.ctxProperties.hasOwnProperty(self.propertiesStyleMap.scriptname.toLowerCase())) {
           var value = obj.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
           if(self.propertiesStyleMap.properties.hasOwnProperty(value.toLowerCase())) {

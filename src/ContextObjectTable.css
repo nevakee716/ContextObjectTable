@@ -1,11 +1,15 @@
 div#cwContextTable table {
   margin: 1em 0;
   //width: 100%;
-  /*overflow: hidden;*/
+  overflow: scroll;
   background: white;
   color: #424242;
   border: #039be5;
   border-collapse: collapse;
+}
+
+div#cwContextTable tbody {
+  color: inherit;
 }
 
 div#cwContextTable a {
@@ -107,3 +111,7 @@ div#cwContextTable table tbody td {
     top: -50px;
     height: 0px;
 }
+
+
+
+
