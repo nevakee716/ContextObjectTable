@@ -1,7 +1,5 @@
 div#cwContextTable table {
   margin: 1em 0;
-  //width: 100%;
-  overflow: scroll;
   background: white;
   color: #424242;
   border: #039be5;
@@ -9,6 +7,7 @@ div#cwContextTable table {
 }
 
 div#cwContextTable tbody {
+  overflow-x:scroll;
   color: inherit;
 }
 
@@ -27,11 +26,11 @@ div#cwContextTable i.fa-times {
 div#cwContextTable th {
   font-size: 2.5em;
   background-color: lightblue;
-  width: 300px;
+  width: 250px;
 }
 
 div#cwContextTable td {
-  width: 300px;
+  width: 250px;
 }
 
 div#cwContextTable div.legend {

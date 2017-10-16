@@ -5,7 +5,7 @@
 
   "use strict";
   // constructor
-  var cwContextTable = function(propertiesStyleMap,rowTitle,columnTitle,cellTitle) {
+  var cwContextTable = function(propertiesStyleMap,rowTitle,columnTitle,cellTitle,nodeID) {
     this.lines = {};
     this.columns = {}; 
     this.linesArray = [];
@@ -22,6 +22,8 @@
     this.columnFilter = {};
     this.columnFilter.objects = [];     
     this.display = false;
+    this.nodeID = nodeID;
+    this.saveEvent = false;
   };
 
   cwContextTable.prototype.addLine = function(line,label) {
@@ -59,14 +61,16 @@
   };
 
   cwContextTable.prototype.addCellFromEdit = function(cell,rowID,columnID) {
-    cell.edited = 'added';
-    cell.columnID = columnID;
-    cell.rowID = rowID;
-    cell.label = cell.label;
-    cell.ctxProperties = {};
-    cell.link = cell.link;
-    cell.object_id = cell.id;
-    this.cells.push(cell);
+    var newCell = {};
+    newCell.edited = 'added';
+    newCell.columnID = columnID;
+    newCell.rowID = rowID;
+    newCell.label = cell.label;
+    newCell.ctxProperties = {};    
+    newCell.ctxProperties[this.propertiesStyleMap.scriptname.toLowerCase()] = "";
+    newCell.link = cell.link;
+    newCell.object_id = cell.id;
+    this.cells.push(newCell);
   };
 
  
@@ -153,13 +157,12 @@
       $scope.getLabelCell = function() {
         return self.cellTitle;
       };
- 
 
+      $scope.tableClass = "tableContext" + self.nodeID;
       $scope.rowFilter = self.rowFilter;
       $scope.columnFilter = self.columnFilter;
       $scope.cellFilter = self.cellFilter;            
       $scope.searchTextCell = {};
-
 
       $scope.filterLines =  function (searchTextCell) {
         var getObjectForLineAndColumns = $scope.getObjectForLineAndColumns;
@@ -213,12 +216,31 @@
         if(!self.isCellAlreadyExist(row.object_id,column.object_id,cell.id)) {
           self.addCellFromEdit(cell,row.object_id,column.object_id);
         } 
+        self.addEventOnSave();
       };
 
       $scope.editProperties = function(obj,scriptname,value) {
-        obj.ctxProperties[scriptname.toLowerCase()] = value;
-        if(obj !== 'added') obj.edited = 'edited';
+        if(value == obj.ctxProperties[scriptname.toLowerCase()].toLowerCase()) {
+          return;
+        } else if(value.toLowerCase() == obj.previousValue) {
+          obj.edited = "none";
+          obj.previousValue = undefined;
+          obj.ctxProperties[scriptname.toLowerCase()] = value;
+        } else {
+          if(obj.previousValue === undefined) {
+            obj.previousValue = obj.ctxProperties[scriptname.toLowerCase()].toLowerCase();
+          }
+          obj.ctxProperties[scriptname.toLowerCase()] = value;
+          if(obj.edited !== 'added') obj.edited = 'edited';
+        }
+        self.addEventOnSave();
       };
+
+      $scope.deleteCell = function(obj) {
+        obj.edited = 'deleted';
+        self.addEventOnSave();
+      };
+
 
       $scope.editAddColumn = function(column) {
         column.object_id = column.id;
@@ -230,6 +252,7 @@
         };
         column.edited = "added";
         self.columnsArray.push(column);
+        self.column[column.object_id] = column;
       };
 
       $scope.editAddRow = function(row) {
@@ -242,34 +265,24 @@
         };
         row.edited = "added";
         self.linesArray.push(row);
+        self.lines[row.object_id] = row;
       };
 
-      $scope.remove = function(data) {
-        var newEvent = document.createEvent('Event');
-        newEvent.data = data;
-        newEvent.callback = function() {
-          that.removeLine(data);
-          $scope.$apply();
-        };
-        newEvent.initEvent('Remove Item', true, true);
-        container.dispatchEvent(newEvent);
-      };
-
-      $scope.myObj = {
-          "color" : "white",
-          "background-color" : "coral",
-          "font-size" : "60px",
-          "padding" : "50px"
-      };
 
       $scope.getStyle = function(obj) {
-        var returnStyle = {};
+        var returnStyle;
         if(obj.ctxProperties && obj.ctxProperties.hasOwnProperty(self.propertiesStyleMap.scriptname.toLowerCase())) {
           var value = obj.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
           if(self.propertiesStyleMap.properties.hasOwnProperty(value.toLowerCase())) {
-            returnStyle = self.propertiesStyleMap.properties[value.toLowerCase()];
+            returnStyle = $.extend(true, {}, self.propertiesStyleMap.properties[value.toLowerCase()]);
           }
         }
+        if(obj.edited == "none" || obj.edited == "deleted") {
+          returnStyle["border"] = "";  
+        } else {
+          returnStyle["border"] = "solid red";    
+        }
+
         if(self.editMode === true) {
           returnStyle["justify-content"] = "space-between";
         } else {
@@ -278,28 +291,17 @@
         return returnStyle;
       };
 
-      // in case of single Page, hide 1st column and preselect object
-      if (cwAPI.isIndexPage && !cwAPI.isIndexPage() && false) {
-        $scope.data = {};
-        $scope.display = 'display:none';
-        $scope.data['ot0'] = {};
-        $scope.data['ot0']['id'] = item.object_id.toString();
-      }
-
-      $scope.sortColumn = "name0";
-      $scope.reverseSort = false;
-
-      $scope.sortData = function(column) {
-        $scope.reverseSort = ($scope.sortColumn == column) ? !$scope.reverseSort : false;
-        $scope.sortColumn = column;
-      };
-
-      $scope.getSortClass = function (column) {
-        if($scope.sortColumn == column) {
-          return $scope.reverseSort ? 'arrow-down' : 'arrow-up';
+      $scope.getWidth = function() {
+        var returnStyle = {};
+        if(self.editMode) {
+          returnStyle.width = (self.columnsArray.length + 1) * 300 + "px";
+        } else {
+          returnStyle.width = self.columnsArray.length * 300 + "px";
         }
-        return '';
+        return returnStyle;
       };
+
+    
 
       $scope.getObjectForLineAndColumns = function (rowID,columnID,filter) {
         var result = [];
@@ -312,32 +314,99 @@
         });
         return result;
       };
-
-      $scope.ExportCsv = function() {
-        var table = container.firstChild;
-        var csvString = '';
-        for (var i = 0; i < table.rows.length; i++) {
-          if(i !== 1) {
-            var rowData = table.rows[i].cells;
-            for (var j = 0; j < rowData.length - 1; j++) {
-              csvString = csvString + rowData[j].innerText + ";";
-            }
-            csvString = csvString.substring(0, csvString.length - 1);
-            csvString = csvString + "\n";
-          }
-        }
-        csvString = csvString.substring(0, csvString.length - 1);
-        var a = $('<a/>', {
-          style: 'display:none',
-          href: 'data:application/octet-stream;base64,' + btoa(csvString),
-          download: 'export.csv'
-        }).appendTo('body');
-        a[0].click();
-        a.remove();
-      };
-
     });
   };
+
+
+  cwContextTable.prototype.addEventOnSave = function() {
+    if(!this.saveEvent) {
+      var buttonSave = document.getElementById("cw-edit-mode-button-save");
+      if(buttonSave) {
+        this.saveEvent = true;
+        buttonSave.addEventListener("click", this.buildReport.bind(this), false);  
+      }      
+    }
+  };
+
+  cwContextTable.prototype.buildReport = function() {
+    var cell, i;
+    this.report = {};
+    this.report.added = [];
+    this.report.edited = [];
+    this.report.deleted = [];
+
+    for (i = 0; i < this.cells.length; i++) {
+      cell = this.cells[i];
+      if(cell.edited === 'added') {
+        cell.edited = 'none';
+        this.report.added.push(cell);
+      }
+      if(cell.edited === 'edited') {
+        cell.edited = 'none';
+        this.report.edited.push(cell);
+      }
+      if(cell.edited === 'deleted') {
+        cell.edited = 'none';
+        this.report.deleted.push(cell);
+      }
+    };
+    this.displayReport();
+  };
+  
+
+  cwContextTable.prototype.displayReport = function() {
+
+    var containers,container;
+    containers = document.getElementsByClassName("saveChanges");
+    if(containers.length > 0)  {
+      container = containers[0];
+      container.removeChild(container.firstElementChild);
+      this.buildHTMLReport(container);
+      debugger;
+
+
+
+    }
+    else setTimeout(this.displayReport.bind(this), 1000);
+
+
+   // <div id="button-container"><button id="btn-submit" type="button" class="btn-primary">Submit</button><span id="processing-message">Preparing your change request...</span><span id="complete-message">Complete</span><span id="error-message"></span></div>
+  };
+
+  cwContextTable.prototype.buildHTMLReport = function(container) {
+    var titleAdded = document.createElement('h3');
+    var span;
+    var self = this;
+    titleAdded.innerText = "Added " + this.cellTitle;
+    container.append(titleAdded);
+    this.report.added.forEach(function(elem) {
+      span = document.createElement('span');
+      span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name;
+      container.append(span);
+    });
+
+
+    var titleEdited = document.createElement('h3');
+    titleEdited.innerText = "Edited " + this.cellTitle;
+    container.append(titleEdited);
+    this.report.edited.forEach(function(elem) {
+      span = document.createElement('span');
+      span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name + "\n";
+      //span.innerText += "was " + elem.previousValue;
+      container.append(span);
+    });      
+
+
+    var titleDeleted = document.createElement('h3');
+    titleDeleted.innerText = "Deleted " + this.cellTitle;
+    container.append(titleDeleted);
+    this.report.deleted.forEach(function(elem) {
+      span = document.createElement('span');
+      span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name;
+      container.append(span);
+    });    
+  };
+
 
 
   cwContextTable.prototype.refresh = function() {
