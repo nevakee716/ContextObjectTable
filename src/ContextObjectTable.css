@@ -11,6 +11,20 @@ div#cwContextTable tbody {
   color: inherit;
 }
 
+
+div#cwContextTable .exportCtxt {
+  display : block;
+}
+
+div#cwContextTable .exportCtxtLabel {
+    font-size: 1rem;
+    display: flex;
+    text-align: center;
+    margin: 5px;
+    align-items: center;
+}
+
+
 div#cwContextTable a {
   color: inherit;
 }

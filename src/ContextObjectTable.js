@@ -15,19 +15,21 @@
       this.CellNodeID  = this.options.CustomOptions["CellNodeID"];// "application_20126_1496180330";
       this.EVODUrl = this.options.CustomOptions["EVOD-url"];
       this.propertiesStyleMap = JSON.parse(this.options.CustomOptions["propertiesStyleMap"]); //
+      this.mainPropertyScriptName = this.options.CustomOptions["mainPropertyScriptname"].toLowerCase();
       this.layoutsByNodeId = {};
       this.isLoaded = false;
-      this.cwContextTable = new cwApi.customLibs.cwContextObjectTable.cwContextTable(this.propertiesStyleMap,this.viewSchema.NodesByID[this.RowNodeID].NodeName,this.viewSchema.NodesByID[this.ColumnNodeID].NodeName,this.viewSchema.NodesByID[this.CellNodeID].NodeName,this.nodeID); 
+      this.headerRequest = {};
+
     };
 
     cwContextObjectTable.prototype.drawAssociations = function (output, associationTitleText, object) {
       output.push('<div id="cwContextObjectTable" class="bootstrap-iso" style= "display: flex"></div></div><div id="cwContextTable"></div>');
-      var objectTypeScriptName0,objectTypeScriptName1,objectTypeScriptName2;
-  
+
+      this.createPostRequestHeader(object);
+      this.cwContextTable = new cwApi.customLibs.cwContextObjectTable.cwContextTable(this.propertiesStyleMap,this.viewSchema.NodesByID[this.RowNodeID].NodeName,this.viewSchema.NodesByID[this.ColumnNodeID].NodeName,this.viewSchema.NodesByID[this.CellNodeID].NodeName,this.nodeID,this.viewSchema.NodesByID[this.viewSchema.RootNodesId].ObjectTypeScriptName.toLowerCase(),this.mmNode.ObjectTypeScriptName.toLowerCase(),this.mainPropertyScriptName);   
 
       this.parseObjects(object.associations[this.nodeID]);
       this.cwContextTable.title = this.displayProperty.getDisplayString(object);
-      this.getObjectFromObjectypes(this.viewSchema.NodesByID[this.RowNodeID].ObjectTypeScriptName,this.viewSchema.NodesByID[this.ColumnNodeID].ObjectTypeScriptName,this.viewSchema.NodesByID[this.CellNodeID].ObjectTypeScriptName);
     };
 
     cwContextObjectTable.prototype.parseObjects = function (objects) {
@@ -66,11 +68,118 @@
 
 
 
-   cwContextObjectTable.prototype.getObjectFromObjectypes = function(rowObjectTypeScriptName, columnObjectTypeScriptName, cellObjectTypeScriptName) {
+
+
+
+
+
+
+
+    cwContextObjectTable.prototype.sendEVODRequest = function (postRequest,callback) {
+      var that = this;
+
+      this.headerRequest.request = postRequest;
+      $.ajax({
+          "url": this.EVODUrl,
+          "success": function (res) {
+              callback(res.status);
+              cwApi.notificationManager.addNotification(res.messsage);
+          },
+          "type": 'POST',
+          "dataType": "json",
+          "data": this.headerRequest
+      }).fail(function () {
+          callback(false);
+          cwApi.notificationManager.addNotification('Failed to contact EvolveOnDemand','error');
+      });
+
+    };
+
+
+    cwContextObjectTable.prototype.createTable = function () {
+        var container = document.getElementById("cwContextTable");
+        var $container = $('#cwContextTable'); 
+        this.cwContextTable.createAngularTable($container,container,this.item);
+        
+        var buttonsEdit = document.getElementsByClassName("cw-edit-mode-button-edit");
+        if(buttonsEdit.length > 0) {
+          buttonsEdit[0].addEventListener("click", this.goToEditMode.bind(this), false);  
+        }
+        if(location.hash.includes("cwmode=edit")) {
+          this.goToEditMode();
+        }
+        container.addEventListener('Post Request', this.postRequest.bind(this)); 
+
+      };
+
+    cwContextObjectTable.prototype.goToEditMode = function (event) {
+      this.cwContextTable.editMode = true;
+      this.cwContextTable.refresh();
+      this.lock();
+      this.getObjectFromObjectypes(this.viewSchema.NodesByID[this.RowNodeID].ObjectTypeScriptName,this.viewSchema.NodesByID[this.ColumnNodeID].ObjectTypeScriptName,this.viewSchema.NodesByID[this.CellNodeID].ObjectTypeScriptName,this.viewSchema.NodesByID[this.viewSchema.RootNodesId].ObjectTypeScriptName.toLowerCase());
+    };
+
+
+    cwContextObjectTable.prototype.createPostRequestHeader = function (object) {
+      this.headerRequest.main = {};
+      this.headerRequest.main.id = object.object_id;
+      this.headerRequest.main.scriptname = object.objectTypeScriptName;
+      
+      this.headerRequest.context = {};
+      this.headerRequest.context.scriptname = this.mmNode.ObjectTypeScriptName.toLowerCase();
+      this.headerRequest.context.mainPropertyScriptname = this.mainPropertyScriptName;
+      this.headerRequest.context.mainPropertyLabel = this.mmNode.Filters[this.mainPropertyScriptName.toUpperCase()][0].DisplayValue;
+      this.headerRequest.context.secondPropertyScriptname = this.propertiesStyleMap.scriptname.toLowerCase();
+      this.headerRequest.context.assoToMainObjectScriptname = this.viewSchema.NodesByID[this.viewSchema.RootNodesId].AssociationsTargetObjectTypes[this.nodeID].associationTypeScriptName;
+
+      this.headerRequest.objects = [];
+
+      var obj = {};
+      obj.scriptname = this.mmNode.AssociationsTargetObjectTypes[this.RowNodeID].targetScriptName.toLowerCase();
+      obj.assoToCtxObjectScriptname = this.mmNode.AssociationsTargetObjectTypes[this.RowNodeID].associationTypeScriptName.toLowerCase();
+      this.headerRequest.objects.push(obj);
+      var obj1 = {};
+      obj1.scriptname = this.mmNode.AssociationsTargetObjectTypes[this.ColumnNodeID].targetScriptName.toLowerCase();
+      obj1.assoToCtxObjectScriptname = this.mmNode.AssociationsTargetObjectTypes[this.ColumnNodeID].associationTypeScriptName.toLowerCase();
+      this.headerRequest.objects.push(obj1);
+      var obj2 = {};
+      obj2.scriptname = this.mmNode.AssociationsTargetObjectTypes[this.CellNodeID].targetScriptName.toLowerCase();
+      obj2.assoToCtxObjectScriptname = this.mmNode.AssociationsTargetObjectTypes[this.CellNodeID].associationTypeScriptName.toLowerCase();
+      this.headerRequest.objects.push(obj2);
+
+    };
+
+
+
+    cwContextObjectTable.prototype.getObjectFromObjectypes = function(rowObjectTypeScriptName, columnObjectTypeScriptName, cellObjectTypeScriptName,mainObjectScriptName) {
       var sendData = {};
       var propertiesToSelect = ["NAME", "ID"];
-      var that = this;
+      var self = this;
       var callbackCount = 0;
+
+      sendData.objectTypeScriptName = mainObjectScriptName.toUpperCase();
+      sendData.propertiesToSelect = propertiesToSelect;
+
+      cwApi.cwEditProperties.GetObjectsByScriptName(sendData, function(update) {
+        var mainObject;
+        for(var key in update) {
+          if(update.hasOwnProperty(key)) {
+            callbackCount = callbackCount + 1;
+            for (var i = 0; i < update[key].length; i++) {
+              mainObject = update[key][i];
+                if (mainObject.hasOwnProperty('properties') && mainObject.properties.hasOwnProperty("name") && mainObject.properties.hasOwnProperty("id")) {
+                  mainObject.properties.label = mainObject.name;
+                  self.cwContextTable.mainObjectFilter.objects.push(mainObject.properties); 
+                  self.cwContextTable.mainObjectFilter.label = key;
+                } 
+            }
+          }
+        }
+        if (callbackCount === 4) {
+          self.cwContextTable.refresh();
+          self.unlock();
+        }
+      });
 
       sendData.objectTypeScriptName = rowObjectTypeScriptName;
       sendData.propertiesToSelect = propertiesToSelect;
@@ -85,14 +194,15 @@
                 if (object0.hasOwnProperty('properties') && object0.properties.hasOwnProperty("name") && object0.properties.hasOwnProperty("id")) {
                   object0.properties.label = object0.name;
                   object0.properties.link = cwAPI.getSingleViewHash(rowObjectTypeScriptName, object0.properties.id);
-                  that.cwContextTable.rowFilter.objects.push(object0.properties); 
-                  that.cwContextTable.rowFilter.label = key;
+                  self.cwContextTable.rowFilter.objects.push(object0.properties); 
+                  self.cwContextTable.rowFilter.label = key;
                 } 
             }
           }
         }
-        if (callbackCount === 3 && that.isLoaded) {
-          that.createTable();
+        if (callbackCount === 4) {
+          self.cwContextTable.refresh();
+          self.unlock();
         }
       });
 
@@ -107,14 +217,15 @@
                 if (object1.hasOwnProperty('properties') && object1.properties.hasOwnProperty("name") && object1.properties.hasOwnProperty("id")) {
                   object1.properties.label = object1.name;
                   object1.properties.link = cwAPI.getSingleViewHash(columnObjectTypeScriptName, object1.properties.id);
-                  that.cwContextTable.columnFilter.objects.push(object1.properties);
-                  that.cwContextTable.columnFilter.label = key;
+                  self.cwContextTable.columnFilter.objects.push(object1.properties);
+                  self.cwContextTable.columnFilter.label = key;
                 } 
             }
           }
         }
-        if (callbackCount === 3 && that.isLoaded) {
-          that.createTable();
+        if (callbackCount === 4) {
+          self.cwContextTable.refresh();
+          self.unlock();
         }
       });
 
@@ -129,85 +240,33 @@
                 if (object2.hasOwnProperty('properties') && object2.properties.hasOwnProperty("name") && object2.properties.hasOwnProperty("id")) {
                   object2.properties.label = object2.name;
                   object2.properties.link = cwAPI.getSingleViewHash(cellObjectTypeScriptName, object2.properties.id);
-                  that.cwContextTable.cellFilter.objects.push(object2.properties);
-                  that.cwContextTable.cellFilter.label = key;
+                  self.cwContextTable.cellFilter.objects.push(object2.properties);
+                  self.cwContextTable.cellFilter.label = key;
                 } 
             }
           }
         }
-        if (callbackCount === 3 && that.isLoaded) {
-          that.createTable();
+        if (callbackCount === 4) {
+          self.cwContextTable.refresh();
+          self.unlock();
         }
       });
-    };
+    };  
 
 
-
-
-
-
-    cwContextObjectTable.prototype.sendTernaryRequest = function (url,callback) {
-      var that = this;
-      cwApi.cwDoGETQuery('Failed to contact EvolveOnDemand', url, function(data){
-        if(data !== 'Failed to contact EvolveOnDemand') {
-          if(data.status === 'Ok') {
-            cwApi.notificationManager.addNotification(data.result);
-            callback();
-          } else {
-            cwApi.notificationManager.addNotification(data.result,'error');
-            that.unlock();
-          }
-        } else {
-          cwApi.notificationManager.addNotification('Failed to contact EvolveOnDemand','error');
-          that.unlock();
-        }
-      });
-
-    };
-
-
-    cwContextObjectTable.prototype.createTable = function () {
-        var container = document.getElementById("cwContextTable");
-        var $container = $('#cwContextTable'); 
-        this.cwContextTable.createAngularTable($container,container,this.item);
-        if(container){
-          container.removeEventListener('Remove Item', this.removeTernary);   
-          container.removeEventListener('Add Item', this.createTernary);  
-          container.addEventListener('Remove Item', this.removeTernary);  
-          container.addEventListener('Add Item', this.createTernary); 
-        }
-        
-        var buttonsEdit = document.getElementsByClassName("cw-edit-mode-button-edit");
-        if(buttonsEdit.length > 0) {
-          buttonsEdit[0].addEventListener("click", this.goToEditMode.bind(this), false);  
-        }
-
-      };
-
-    cwContextObjectTable.prototype.goToEditMode = function (event) {
-      this.cwContextTable.editMode = true;
-      this.cwContextTable.refresh();
-    };
-
-  
-
-
-
-    cwContextObjectTable.prototype.removeTernary = function (event) {
-      if(this.isLocked() === false && event.data && event.callback) {
+    cwContextObjectTable.prototype.postRequest = function (event) {
+      var self = this;
+      if(this.isLocked() === false && event.callback) {
         this.lock();
-        var url = this.options.CustomOptions['EVOD-url'] + "ternarycreation?model=" + cwAPI.cwConfigs.ModelFilename;
-        url = url + "&ot0=" + this.cwContextTable.NodesFilter0.objectTypeScriptName + "&id0=" + event.data.id0;
-        url = url + "&ot1=" + this.cwContextTable.NodesFilter1.objectTypeScriptName + "&id1="  + event.data.id1;
-        url = url + "&ot2=" + this.cwContextTable.NodesFilter2.objectTypeScriptName + "&id2="  + event.data.id2; 
-        url = url + "&command=delete"; 
-        var that = this;
-        this.sendTernaryRequest(url,function() {
-          that.unlock();
-          event.callback();
+
+        this.sendEVODRequest(event.data.postRequest,function(sucess) {
+          if(sucess) event.callback(sucess);
+          self.unlock();
         });
       }
     };
+
+
 
 
 
@@ -232,12 +291,7 @@
     cwContextObjectTable.prototype.applyJavaScript = function () {
       var that = this;
       cwApi.CwAsyncLoader.load('angular', function () {
-        if(that.isLoaded) {
           that.createTable();
-        } else {
-          that.isLoaded = true;
-        }
-        
       });
     };
 

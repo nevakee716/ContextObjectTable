@@ -5,7 +5,7 @@
 
   "use strict";
   // constructor
-  var cwContextTable = function(propertiesStyleMap,rowTitle,columnTitle,cellTitle,nodeID) {
+  var cwContextTable = function(propertiesStyleMap,rowTitle,columnTitle,cellTitle,nodeID,mainObjectScriptName,ctxScriptname,mainPropertyScriptname) {
     this.lines = {};
     this.columns = {}; 
     this.linesArray = [];
@@ -20,10 +20,15 @@
     this.rowFilter = {};
     this.rowFilter.objects = [];
     this.columnFilter = {};
-    this.columnFilter.objects = [];     
+    this.columnFilter.objects = [];  
+    this.mainObjectFilter = {};
+    this.mainObjectFilter.objects = [];   
     this.display = false;
     this.nodeID = nodeID;
     this.saveEvent = false;
+    this.mainObjectScriptName = mainObjectScriptName;
+    this.ctxScriptname = ctxScriptname;
+    this.mainProperty = cwAPI.mm.getMetaModel().objectTypes[ctxScriptname].properties[mainPropertyScriptname];
   };
 
   cwContextTable.prototype.addLine = function(line,label) {
@@ -55,6 +60,7 @@
       cell[0].rowID = rowID;
       cell[0].label = label;
       cell[0].ctxProperties = ctxObj.properties;
+      cell[0].ctxId = ctxObj.object_id;
       cell[0].link = cwAPI.getSingleViewHash(cell[0].objectTypeScriptName, cell[0].object_id);
       this.cells.push(cell[0]);
     }
@@ -139,7 +145,7 @@
     loader.setup();
     var that = this;
     var self = this;
-
+    this.container = $container;
     templatePath = cwAPI.getCommonContentPath() + '/html/angularLayouts/cwLayoutAngularTable.ng.html' + '?' + Math.random();
 
     loader.loadControllerWithTemplate('abc', $container, templatePath, function($scope, $filter, $sce) {
@@ -158,10 +164,28 @@
         return self.cellTitle;
       };
 
+      $scope.getLabelMainObject = function() {
+        return cwAPI.getObjectTypeName(self.mainObjectScriptName);
+      };
+
+
+      $scope.mainProperty = self.mainProperty;
+ 
+      $scope.$watch('exportObject', function(newvalue,oldvalue) {
+        self.exportObject = newvalue;
+        if(self.exportProperty && self.exportObject) self.addEventOnSave();
+      });
+      $scope.$watch('exportProperty', function(newvalue,oldvalue) {
+        self.exportProperty = newvalue;
+        if(self.exportProperty && self.exportObject) self.addEventOnSave();
+      });
+
+
       $scope.tableClass = "tableContext" + self.nodeID;
       $scope.rowFilter = self.rowFilter;
       $scope.columnFilter = self.columnFilter;
-      $scope.cellFilter = self.cellFilter;            
+      $scope.cellFilter = self.cellFilter;       
+      $scope.mainObjectFilter = self.mainObjectFilter;      
       $scope.searchTextCell = {};
 
       $scope.filterLines =  function (searchTextCell) {
@@ -270,7 +294,7 @@
 
 
       $scope.getStyle = function(obj) {
-        var returnStyle;
+        var returnStyle = {};
         if(obj.ctxProperties && obj.ctxProperties.hasOwnProperty(self.propertiesStyleMap.scriptname.toLowerCase())) {
           var value = obj.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
           if(self.propertiesStyleMap.properties.hasOwnProperty(value.toLowerCase())) {
@@ -334,19 +358,22 @@
     this.report.added = [];
     this.report.edited = [];
     this.report.deleted = [];
+    this.report.export = {};
+    if(this.exportObject && this.exportProperty) {
+      this.report.export.id = this.exportObject.id;
+      this.report.export.propertyValue = this.exportProperty.name;      
+    }
+
 
     for (i = 0; i < this.cells.length; i++) {
       cell = this.cells[i];
       if(cell.edited === 'added') {
-        cell.edited = 'none';
         this.report.added.push(cell);
       }
       if(cell.edited === 'edited') {
-        cell.edited = 'none';
         this.report.edited.push(cell);
       }
       if(cell.edited === 'deleted') {
-        cell.edited = 'none';
         this.report.deleted.push(cell);
       }
     };
@@ -362,51 +389,138 @@
       container = containers[0];
       container.removeChild(container.firstElementChild);
       this.buildHTMLReport(container);
-      debugger;
-
-
-
     }
-    else setTimeout(this.displayReport.bind(this), 1000);
+    else setTimeout(this.displayReport.bind(this), 100);
 
 
-   // <div id="button-container"><button id="btn-submit" type="button" class="btn-primary">Submit</button><span id="processing-message">Preparing your change request...</span><span id="complete-message">Complete</span><span id="error-message"></span></div>
+   };
+
+  cwContextTable.prototype.buildPostRequest = function(container) {
+    var request = [];
+    var self = this;
+    this.report.added.forEach(function(elem) {
+      var req = {};
+      req.type = "add";
+      req.ids = [];
+      req.ids.push(self.lines[elem.rowID].object_id);
+      req.ids.push(self.lines[elem.columnID].object_id);
+      req.ids.push(elem.object_id);
+      req.label = elem.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
+      request.push(req);
+    });
+    this.report.edited.forEach(function(elem) {
+      var req = {};
+      req.type = "edit";
+      req.ids = [];
+      req.ids.push(self.lines[elem.rowID].object_id);
+      req.ids.push(self.lines[elem.columnID].object_id);
+      req.ids.push(elem.object_id);
+      req.ctxId = elem.ctxId;
+      req.label = elem.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
+      request.push(req);
+    });
+    this.report.deleted.forEach(function(elem) {
+      var req = {};
+      req.type = "delete";
+      req.ids = [];
+      req.ids.push(self.lines[elem.rowID].object_id);
+      req.ids.push(self.lines[elem.columnID].object_id);
+      req.ids.push(elem.object_id);
+      request.push(req);
+    });
+
+    if(this.exportObject && this.exportProperty) {
+      var req = {};
+      req.type = "export",
+      req.mainID = this.exportObject.id,
+      req.mainPropertyLabel = this.exportProperty.name;
+      request.push(req);
+    }
+    return request;
   };
 
   cwContextTable.prototype.buildHTMLReport = function(container) {
-    var titleAdded = document.createElement('h3');
     var span;
     var self = this;
-    titleAdded.innerText = "Added " + this.cellTitle;
-    container.append(titleAdded);
-    this.report.added.forEach(function(elem) {
+
+    if(this.report.added.length > 0) {
+      var titleAdded = document.createElement('h3');
+      titleAdded.innerText = "Added " + this.cellTitle;
+      container.append(titleAdded);
+      this.report.added.forEach(function(elem) {
+        span = document.createElement('span');
+        span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name;
+        container.append(span);
+      });
+    }
+
+    if(this.report.edited.length > 0) {
+      var titleEdited = document.createElement('h3');
+      titleEdited.innerText = "Edited " + this.cellTitle;
+      container.append(titleEdited);
+      this.report.edited.forEach(function(elem) {
+        span = document.createElement('span');
+        span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name + "\n";
+        container.append(span);
+      });    
+    }  
+
+    if(this.report.deleted.length > 0) {
+      var titleDeleted = document.createElement('h3');
+      titleDeleted.innerText = "Deleted " + this.cellTitle;
+      container.append(titleDeleted);
+      this.report.deleted.forEach(function(elem) {
+        span = document.createElement('span');
+        span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name;
+        container.append(span);
+      });       
+    }
+ 
+
+
+    if(this.exportObject && this.exportProperty) {
+      var titleExport = document.createElement('h3');
+      titleExport.innerText = "Export this Table to : ";
+      container.append(titleExport);
       span = document.createElement('span');
-      span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name;
+      span.innerText = this.exportObject.name + " " + this.exportProperty.name;
       container.append(span);
-    });
+    }
+
+    var buttonContainer = document.createElement('div');
+    buttonContainer.id = "button-container";
+
+    var button = document.createElement('button');
+    button.id = "btn-submit";
+    button.setAttribute("type","button");
+    button.setAttribute("class","btn-primary"); 
+    button.innerText = "Submit";
+
+    button.addEventListener("click", this.submit.bind(this), false); 
+    buttonContainer.append(button);
+
+    container.append(buttonContainer);
+  
 
 
-    var titleEdited = document.createElement('h3');
-    titleEdited.innerText = "Edited " + this.cellTitle;
-    container.append(titleEdited);
-    this.report.edited.forEach(function(elem) {
-      span = document.createElement('span');
-      span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name + "\n";
-      //span.innerText += "was " + elem.previousValue;
-      container.append(span);
-    });      
 
-
-    var titleDeleted = document.createElement('h3');
-    titleDeleted.innerText = "Deleted " + this.cellTitle;
-    container.append(titleDeleted);
-    this.report.deleted.forEach(function(elem) {
-      span = document.createElement('span');
-      span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name;
-      container.append(span);
-    });    
   };
 
+  cwContextTable.prototype.submit = function() {
+    var newEvent = document.createEvent('Event');
+    newEvent.data = {};
+    newEvent.data.postRequest = this.buildPostRequest();
+    newEvent.callback = function(sucess) {
+      if(sucess) {
+        this.report.deleted.forEach(function(elem) {elem.edited = "none";});
+        this.report.added.forEach(function(elem) {elem.edited = "none";});
+        this.report.edited.forEach(function(elem) {elem.edited = "none";});  
+        window.setTimeout(refresh.bind(this), 200);
+      }
+    };
+    newEvent.initEvent('Post Request', true, true);
+    document.getElementById("cwContextTable").dispatchEvent(newEvent);
+  };
 
 
   cwContextTable.prototype.refresh = function() {
