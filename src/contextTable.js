@@ -449,7 +449,7 @@
       container.append(titleAdded);
       this.report.added.forEach(function(elem) {
         span = document.createElement('span');
-        span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name;
+        span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.columns[elem.columnID].name;
         container.append(span);
       });
     }
@@ -460,7 +460,7 @@
       container.append(titleEdited);
       this.report.edited.forEach(function(elem) {
         span = document.createElement('span');
-        span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name + "\n";
+        span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.columns[elem.columnID].name + "\n";
         container.append(span);
       });    
     }  
@@ -471,7 +471,7 @@
       container.append(titleDeleted);
       this.report.deleted.forEach(function(elem) {
         span = document.createElement('span');
-        span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.lines[elem.columnID].name;
+        span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.columns[elem.columnID].name;
         container.append(span);
       });       
     }
