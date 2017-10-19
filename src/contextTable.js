@@ -276,7 +276,7 @@
         };
         column.edited = "added";
         self.columnsArray.push(column);
-        self.column[column.object_id] = column;
+        self.columns[column.object_id] = column;
       };
 
       $scope.editAddRow = function(row) {

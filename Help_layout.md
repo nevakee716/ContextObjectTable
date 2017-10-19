@@ -39,7 +39,7 @@
   
   <meta name="pjax-timeout" content="1000">
   
-  <meta name="request-id" content="E9A9:1803D:1169300:1BB5D93:59E91E3E" data-pjax-transient>
+  <meta name="request-id" content="EB59:1803B:AFBF7D:14E7E82:59E925AC" data-pjax-transient>
   
 
   <meta name="selected-link" value="repo_source" data-pjax-transient>
@@ -48,7 +48,7 @@
 <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
     <meta name="google-analytics" content="UA-3769691-2">
 
-<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url" /><meta content="E9A9:1803D:1169300:1BB5D93:59E91E3E" name="octolytics-dimension-request_id" /><meta content="iad" name="octolytics-dimension-region_edge" /><meta content="iad" name="octolytics-dimension-region_render" />
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url" /><meta content="EB59:1803B:AFBF7D:14E7E82:59E925AC" name="octolytics-dimension-request_id" /><meta content="iad" name="octolytics-dimension-region_edge" /><meta content="iad" name="octolytics-dimension-region_render" />
 <meta content="/&lt;user-name&gt;/&lt;repo-name&gt;" data-pjax-transient="true" name="analytics-location" />
 
 
@@ -63,10 +63,10 @@
   <meta name="user-login" content="">
 
       <meta name="expected-hostname" content="github.com">
-    <meta name="js-proxy-site-detection-payload" content="NTBlZjA4OWRiNWNjYmZlMjUzMjk2NWI5OTFiOGE0OGVjMTRkM2Q0NjA5YWJlZjIyMzg3NmU5MjBjY2JmZmViZHx7InJlbW90ZV9hZGRyZXNzIjoiMjEzLjI0NS40NS4xNTQiLCJyZXF1ZXN0X2lkIjoiRTlBOToxODAzRDoxMTY5MzAwOjFCQjVEOTM6NTlFOTFFM0UiLCJ0aW1lc3RhbXAiOjE1MDg0NDk4NTQsImhvc3QiOiJnaXRodWIuY29tIn0=">
+    <meta name="js-proxy-site-detection-payload" content="Zjc5MTg3NGY4NjNmOTY4MTU4N2YyOGQyNzBlZjk5NmUwOGEzOWM0OWMwOTQwOGRjZDdmNTA3YzIzMTQ2N2IwOXx7InJlbW90ZV9hZGRyZXNzIjoiMjEzLjI0NS40NS4xNTQiLCJyZXF1ZXN0X2lkIjoiRUI1OToxODAzQjpBRkJGN0Q6MTRFN0U4Mjo1OUU5MjVBQyIsInRpbWVzdGFtcCI6MTUwODQ1MTc1NywiaG9zdCI6ImdpdGh1Yi5jb20ifQ==">
 
 
-  <meta name="html-safe-nonce" content="0c63e6b37e48c57f6cc0a171404310b65c7a8e29">
+  <meta name="html-safe-nonce" content="0e1710ff5e42a530d54dfd3bbc8902ebee906ca9">
 
   <meta http-equiv="x-pjax-version" content="8a12866e4cb0c103a0ed3d557a81cbce">
   
@@ -308,7 +308,7 @@
       <div class="signup-prompt-bg rounded-1">
       <div class="signup-prompt p-4 text-center mb-4 rounded-1">
         <div class="position-relative">
-          <!-- '"` --><!-- </textarea></xmp> --></option></form><form accept-charset="UTF-8" action="/site/dismiss_signup_prompt" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="JR+5mNZxWXOyxGgEsubfgyfLvB95P53Sh2h47MdAC4NuFKgF1bGsX3N8RTot+k2zH7xuxp2GwHXHnSASN4go2g==" /></div>
+          <!-- '"` --><!-- </textarea></xmp> --></option></form><form accept-charset="UTF-8" action="/site/dismiss_signup_prompt" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="qSh0WeZwmOZx5fOzTmja9Ti5DNYHA+AbCRIYTn0rDbHK8LaituB6sSfW0IEerDYdKxNKTLqXaaow4XJ27Qb9vw==" /></div>
             <button type="submit" class="position-absolute top-0 right-0 btn-link link-gray" data-ga-click="(Logged out) Sign up prompt, clicked Dismiss, text:dismiss">
               Dismiss
             </button>
@@ -685,7 +685,7 @@
 <div class="footer container-lg px-3" role="contentinfo">
   <div class="position-relative d-flex flex-justify-between py-6 mt-6 f6 text-gray border-top border-gray-light ">
     <ul class="list-style-none d-flex flex-wrap ">
-      <li class="mr-3">&copy; 2017 <span title="0.14204s from unicorn-1315054473-z8c0m">GitHub</span>, Inc.</li>
+      <li class="mr-3">&copy; 2017 <span title="0.10578s from unicorn-4277084857-rvwfw">GitHub</span>, Inc.</li>
         <li class="mr-3"><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
         <li class="mr-3"><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
         <li class="mr-3"><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
