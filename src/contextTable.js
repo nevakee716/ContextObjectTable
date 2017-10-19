@@ -403,7 +403,7 @@
       req.type = "add";
       req.ids = [];
       req.ids.push(self.lines[elem.rowID].object_id);
-      req.ids.push(self.lines[elem.columnID].object_id);
+      req.ids.push(self.columns[elem.columnID].object_id);
       req.ids.push(elem.object_id);
       req.label = elem.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
       request.push(req);
@@ -413,7 +413,7 @@
       req.type = "edit";
       req.ids = [];
       req.ids.push(self.lines[elem.rowID].object_id);
-      req.ids.push(self.lines[elem.columnID].object_id);
+      req.ids.push(self.columns[elem.columnID].object_id);
       req.ids.push(elem.object_id);
       req.ctxId = elem.ctxId;
       req.label = elem.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
@@ -424,7 +424,7 @@
       req.type = "delete";
       req.ids = [];
       req.ids.push(self.lines[elem.rowID].object_id);
-      req.ids.push(self.lines[elem.columnID].object_id);
+      req.ids.push(self.columns[elem.columnID].object_id);
       req.ids.push(elem.object_id);
       request.push(req);
     });
