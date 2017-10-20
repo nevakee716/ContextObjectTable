@@ -23,7 +23,12 @@
     };
 
     cwContextObjectTable.prototype.drawAssociations = function (output, associationTitleText, object) {
-      output.push('<div id="cwContextObjectTable" class="bootstrap-iso" style= "display: flex"></div></div><div id="cwContextTable"></div>');
+      var classContainer = "bootstrap-iso";
+      if(object.associations[this.nodeID].length > 0) classContainer +=" cw-visible";
+
+      
+
+      output.push('<div id="cwContextObjectTable" class="'+ classContainer + '" style= "display: flex"></div></div><div id="cwContextTable"></div>');
 
       this.createPostRequestHeader(object);
       this.cwContextTable = new cwApi.customLibs.cwContextObjectTable.cwContextTable(this.propertiesStyleMap,this.viewSchema.NodesByID[this.RowNodeID].NodeName,this.viewSchema.NodesByID[this.ColumnNodeID].NodeName,this.viewSchema.NodesByID[this.CellNodeID].NodeName,this.nodeID,this.viewSchema.NodesByID[this.viewSchema.RootNodesId].ObjectTypeScriptName.toLowerCase(),this.mmNode.ObjectTypeScriptName.toLowerCase(),this.mainPropertyScriptName);   
