@@ -47,7 +47,8 @@
         var l,item, getDisplayStringFromLayout = function(layout){
             return layout.displayProperty.getDisplayString(item);
         };
-        if(items.length > 0) {
+
+        if(items && items.length > 0) {
           item = items[0];
         } else {
           return "";
