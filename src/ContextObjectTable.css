@@ -1,4 +1,4 @@
-div#cwContextTable table {
+div.cwContextTable table {
   margin: 1em 0;
   background: white;
   color: #424242;
@@ -6,17 +6,17 @@ div#cwContextTable table {
   border-collapse: collapse;
 }
 
-div#cwContextTable tbody {
+div.cwContextTable tbody {
   overflow-x:scroll;
   color: inherit;
 }
 
 
-div#cwContextTable .exportCtxt {
+div.cwContextTable .exportCtxt {
   display : block;
 }
 
-div#cwContextTable .exportCtxtLabel {
+div.cwContextTable .exportCtxtLabel {
     font-size: 1rem;
     display: flex;
     text-align: center;
@@ -25,75 +25,75 @@ div#cwContextTable .exportCtxtLabel {
 }
 
 
-div#cwContextTable a {
+div.cwContextTable a {
   color: inherit;
 }
 
-div#cwContextTable table tbody tr {
+div.cwContextTable table tbody tr {
   border: #bfbfbf;
 }
 
-div#cwContextTable i.fa-times {
+div.cwContextTable i.fa-times {
   color: red;
 }
 
-div#cwContextTable th {
+div.cwContextTable th {
   font-size: 1.1rem;
   background-color: lightblue;
   width: 250px;
 }
 
-div#cwContextTable td {
+div.cwContextTable td {
   width: 250px;
 }
 
-div#cwContextTable div.legend {
+div.cwContextTable div.legend {
   display:flex;
 }
 
-div#cwContextTable div.cellElement {
+div.cwContextTable div.cellElement {
   display:flex;
   justify-content: space-between;
 }
 
-div#cwContextTable div.cellElement div{
+div.cwContextTable div.cellElement div{
   display:flex;
 }
 
-div#cwContextTable div.editStyle {
+div.cwContextTable div.editStyle {
   display:flex;
 }
 
 
 
-div#cwContextTable input{
+div.cwContextTable input{
   width: 30%;
   margin-left: 2px;
   text-align: center;
 }
 
-div#cwContextTable table, th, td {
+div.cwContextTable table, th, td {
    border: 4px solid #2980bc;
 }
 
-div#cwContextTable div.editDiv {
+div.cwContextTable div.editDiv {
   display: flex;
 }
 
-div#cwContextTable div.editDiv button{
+div.cwContextTable div.editDiv button{
   width:10%;
 }
 
-div#cwContextTable table tbody td {
+div.cwContextTable table tbody td {
   display: table-cell;
   word-wrap: break-word;
   max-width: 7em;
 }
-div#cwContextTable table tbody td button {
+div.cwContextTable table tbody td button {
   width: 100%;
 }
-div#cwContextTable table thead th,
-div#cwContextTable table tbody td {
+div.cwContextTable table thead th,
+div.cwContextTable table tbody td {
   text-align: center;
   margin: 0.5em 1em;
   display: table-cell;

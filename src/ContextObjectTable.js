@@ -28,7 +28,7 @@
 
       
 
-      output.push('<div id="cwContextTable' + this.nodeID + '" class="'+ classContainer + '"></div>');
+      output.push('<div id="cwContextTable' + this.nodeID + '" class="cwContextTable '+ classContainer + '"></div>');
 
       this.createPostRequestHeader(object);
       this.cwContextTable = new cwApi.customLibs.cwContextObjectTable.cwContextTable(this.propertiesStyleMap,this.viewSchema.NodesByID[this.RowNodeID].NodeName,this.viewSchema.NodesByID[this.ColumnNodeID].NodeName,this.viewSchema.NodesByID[this.CellNodeID].NodeName,this.nodeID,this.viewSchema.NodesByID[this.viewSchema.RootNodesId].ObjectTypeScriptName.toLowerCase(),this.mmNode.ObjectTypeScriptName.toLowerCase(),this.mainPropertyScriptName);   
@@ -104,8 +104,8 @@
 
 
     cwContextObjectTable.prototype.createTable = function () {
-        var container = document.getElementById("cwContextTable");
-        var $container = $('#cwContextTable'); 
+        var container = document.getElementById("cwContextTable" + this.nodeID);
+        var $container = $('#cwContextTable' + this.nodeID); 
         this.cwContextTable.createAngularTable($container,container,this.item);
         
         var buttonsEdit = document.getElementsByClassName("cw-edit-mode-button-edit");
@@ -116,7 +116,6 @@
           this.goToEditMode();
         }
         container.addEventListener('Post Request', this.postRequest.bind(this)); 
-
       };
 
     cwContextObjectTable.prototype.goToEditMode = function (event) {
