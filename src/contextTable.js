@@ -244,15 +244,15 @@
       };
 
       $scope.editProperties = function(obj,scriptname,value) {
-        if(value == obj.ctxProperties[scriptname.toLowerCase()].toLowerCase()) {
+        if(value == obj.ctxProperties[scriptname.toLowerCase()]) {
           return;
-        } else if(value.toLowerCase() == obj.previousValue) {
+        } else if(value == obj.previousValue) {
           obj.edited = "none";
           obj.previousValue = undefined;
           obj.ctxProperties[scriptname.toLowerCase()] = value;
         } else {
           if(obj.previousValue === undefined) {
-            obj.previousValue = obj.ctxProperties[scriptname.toLowerCase()].toLowerCase();
+            obj.previousValue = obj.ctxProperties[scriptname.toLowerCase()];
           }
           obj.ctxProperties[scriptname.toLowerCase()] = value;
           if(obj.edited !== 'added') obj.edited = 'edited';
@@ -297,8 +297,8 @@
         var returnStyle = {};
         if(obj.ctxProperties && obj.ctxProperties.hasOwnProperty(self.propertiesStyleMap.scriptname.toLowerCase())) {
           var value = obj.ctxProperties[self.propertiesStyleMap.scriptname.toLowerCase()];
-          if(self.propertiesStyleMap.properties.hasOwnProperty(value.toLowerCase())) {
-            returnStyle = $.extend(true, {}, self.propertiesStyleMap.properties[value.toLowerCase()]);
+          if(self.propertiesStyleMap.properties.hasOwnProperty(value)) {
+            returnStyle = $.extend(true, {}, self.propertiesStyleMap.properties[value]);
           }
         }
         if(obj.edited == "none" || obj.edited == "deleted") {
@@ -533,8 +533,8 @@
 
 
   cwContextTable.prototype.reload = function() {
-    if (location) {
-      location.reload();
+    if (window.location) {
+      window.location = window.location.replace("&cwmode=edit");
     }
   };
 
