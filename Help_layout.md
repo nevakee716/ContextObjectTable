@@ -39,7 +39,7 @@
   
   <meta name="pjax-timeout" content="1000">
   
-  <meta name="request-id" content="4DC5:2ABF:5B1ACA:B255D7:59F3298C" data-pjax-transient>
+  <meta name="request-id" content="4E12:2ABC:3D24BB:651B5A:59F32AE8" data-pjax-transient>
   
 
   <meta name="selected-link" value="repo_source" data-pjax-transient>
@@ -48,7 +48,7 @@
 <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
     <meta name="google-analytics" content="UA-3769691-2">
 
-<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url" /><meta content="4DC5:2ABF:5B1ACA:B255D7:59F3298C" name="octolytics-dimension-request_id" /><meta content="iad" name="octolytics-dimension-region_edge" /><meta content="iad" name="octolytics-dimension-region_render" />
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url" /><meta content="4E12:2ABC:3D24BB:651B5A:59F32AE8" name="octolytics-dimension-request_id" /><meta content="iad" name="octolytics-dimension-region_edge" /><meta content="iad" name="octolytics-dimension-region_render" />
 <meta content="/&lt;user-name&gt;/&lt;repo-name&gt;" data-pjax-transient="true" name="analytics-location" />
 
 
@@ -63,10 +63,10 @@
   <meta name="user-login" content="">
 
       <meta name="expected-hostname" content="github.com">
-    <meta name="js-proxy-site-detection-payload" content="MmEzZWU3OTNkZTVjYTNhOTJhZGY0ZDczMzY3MDFjODU0NWZhZGZiMzYyNzM4Mzk3MWNjMmI2ZDM4ZTJmN2NjYXx7InJlbW90ZV9hZGRyZXNzIjoiMjEzLjI0NS40NS4xNTQiLCJyZXF1ZXN0X2lkIjoiNERDNToyQUJGOjVCMUFDQTpCMjU1RDc6NTlGMzI5OEMiLCJ0aW1lc3RhbXAiOjE1MDkxMDgxMDgsImhvc3QiOiJnaXRodWIuY29tIn0=">
+    <meta name="js-proxy-site-detection-payload" content="ZTBkNDQ4OGVlMTVjZDczYjExNTQ0Njg2NTRjODE5NWY2NTcxZWZiODk4ZWQzNjY4MjQzMDk3OWYzNDc0Zjc2MHx7InJlbW90ZV9hZGRyZXNzIjoiMjEzLjI0NS40NS4xNTQiLCJyZXF1ZXN0X2lkIjoiNEUxMjoyQUJDOjNEMjRCQjo2NTFCNUE6NTlGMzJBRTgiLCJ0aW1lc3RhbXAiOjE1MDkxMDg0NTYsImhvc3QiOiJnaXRodWIuY29tIn0=">
 
 
-  <meta name="html-safe-nonce" content="e92571e19532b37f69161a36e96a8c4ebabdd2ad">
+  <meta name="html-safe-nonce" content="fba445b116fa2b3752ab67e5632364c863bae69f">
 
   <meta http-equiv="x-pjax-version" content="5e3e6e73863229649d2baec8b5b31c43">
   
@@ -310,7 +310,7 @@
       <div class="signup-prompt-bg rounded-1">
       <div class="signup-prompt p-4 text-center mb-4 rounded-1">
         <div class="position-relative">
-          <!-- '"` --><!-- </textarea></xmp> --></option></form><form accept-charset="UTF-8" action="/site/dismiss_signup_prompt" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="S8pHQXHjdRiegYnuB4rlDo7tmTEeuokU699qS4n85a7Pb23qccA/NEGgx++iJRNEOpGDWweCvWdxwMyWY0sMuw==" /></div>
+          <!-- '"` --><!-- </textarea></xmp> --></option></form><form accept-charset="UTF-8" action="/site/dismiss_signup_prompt" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="M1SMbinfRCLiZKEPDOOcQiK9U+tVkEMHXjBvY/cKIl5rK8LXtxm61SfF26iLt8T0lL+lt7I5HRfuyWQkqCkTtg==" /></div>
             <button type="submit" class="position-absolute top-0 right-0 btn-link link-gray" data-ga-click="(Logged out) Sign up prompt, clicked Dismiss, text:dismiss">
               Dismiss
             </button>
@@ -347,7 +347,7 @@
           <a data-pjax href="/nevakee716/ContextObjectTable/commits/master">
               <svg aria-hidden="true" class="octicon octicon-history" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M8 13H6V6h5v2H8v5zM7 1C4.81 1 2.87 2.02 1.59 3.59L0 2v4h4L2.5 4.5C3.55 3.17 5.17 2.3 7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-.34.03-.67.09-1H.08C.03 7.33 0 7.66 0 8c0 3.86 3.14 7 7 7s7-3.14 7-7-3.14-7-7-7z"/></svg>
               <span class="num text-emphasized">
-                28
+                30
               </span>
               commits
           </a>
@@ -390,21 +390,21 @@
                 <a href="/nevakee716/ContextObjectTable/search?l=javascript"  data-ga-click="Repository, language stats search click, location:repo overview">
                   <span class="color-block language-color" style="background-color:#f1e05a;"></span>
                   <span class="lang">JavaScript</span>
-                  <span class="percent">80.9%</span>
-                </a>
-            </li>
-            <li>
-                <a href="/nevakee716/ContextObjectTable/search?l=css"  data-ga-click="Repository, language stats search click, location:repo overview">
-                  <span class="color-block language-color" style="background-color:#563d7c;"></span>
-                  <span class="lang">CSS</span>
-                  <span class="percent">10.0%</span>
+                  <span class="percent">82.2%</span>
                 </a>
             </li>
             <li>
                 <a href="/nevakee716/ContextObjectTable/search?l=html"  data-ga-click="Repository, language stats search click, location:repo overview">
                   <span class="color-block language-color" style="background-color:#e34c26;"></span>
                   <span class="lang">HTML</span>
-                  <span class="percent">9.1%</span>
+                  <span class="percent">9.2%</span>
+                </a>
+            </li>
+            <li>
+                <a href="/nevakee716/ContextObjectTable/search?l=css"  data-ga-click="Repository, language stats search click, location:repo overview">
+                  <span class="color-block language-color" style="background-color:#563d7c;"></span>
+                  <span class="lang">CSS</span>
+                  <span class="percent">8.6%</span>
                 </a>
             </li>
           </ol>
@@ -414,9 +414,9 @@
   </div>
 
     <div class="repository-lang-stats-graph js-toggle-lang-stats" title="Click for language details" data-ga-click="Repository, language bar stats toggle, location:repo overview">
-      <span class="language-color" aria-label="JavaScript 80.9%" style="width:80.9%; background-color:#f1e05a;" itemprop="keywords">JavaScript</span>
-      <span class="language-color" aria-label="CSS 10.0%" style="width:10.0%; background-color:#563d7c;" itemprop="keywords">CSS</span>
-      <span class="language-color" aria-label="HTML 9.1%" style="width:9.1%; background-color:#e34c26;" itemprop="keywords">HTML</span>
+      <span class="language-color" aria-label="JavaScript 82.2%" style="width:82.2%; background-color:#f1e05a;" itemprop="keywords">JavaScript</span>
+      <span class="language-color" aria-label="HTML 9.2%" style="width:9.2%; background-color:#e34c26;" itemprop="keywords">HTML</span>
+      <span class="language-color" aria-label="CSS 8.6%" style="width:8.6%; background-color:#563d7c;" itemprop="keywords">CSS</span>
     </div>
 
 
@@ -557,7 +557,7 @@
 
   
 
-<include-fragment class="commit-tease commit-loader" src="/nevakee716/ContextObjectTable/tree-commit/2960c6de9fd8bfeb7a9d3e81a9436c312ed75ff0">
+<include-fragment class="commit-tease commit-loader" src="/nevakee716/ContextObjectTable/tree-commit/b334bdb769b2ccc3c3f4fa43d53c9636504a9b61">
   <div class="blank">
     <img alt="" class="loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32-EAF2F5.gif" width="16" />
     Fetching latest commit…
@@ -570,7 +570,7 @@
 
 <div class="file-wrap">
 
-  <a href="/nevakee716/ContextObjectTable/tree/2960c6de9fd8bfeb7a9d3e81a9436c312ed75ff0" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
+  <a href="/nevakee716/ContextObjectTable/tree/b334bdb769b2ccc3c3f4fa43d53c9636504a9b61" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
 
   <table class="files js-navigation-container js-active-navigation-container" data-pjax>
 
@@ -604,15 +604,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/tree/master/dist" class="js-navigation-open" id="2a6d07eef8b10b84129b42424ed99327-bb375aac17b252383851134872df0f2db89c987c" title="dist">dist</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/tree/master/dist" class="js-navigation-open" id="2a6d07eef8b10b84129b42424ed99327-62ac2cf217ea2d05a86094963b2fa6bea53554d7" title="dist">dist</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/390a42b4b56619af4c17dba4886df5179845e5b7" class="message" data-pjax="true" title="create new package">create new package</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/b334bdb769b2ccc3c3f4fa43d53c9636504a9b61" class="message" data-pjax="true" title="correct css">correct css</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:01:50Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:45:55Z">Oct 27, 2017</time-ago></span>
           </td>
         </tr>
         <tr class="js-navigation-item">
@@ -621,15 +621,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/tree/master/src" class="js-navigation-open" id="25d902c24283ab8cfbac54dfa101ad31-ca92bc1dd1cb7e5343a25f9c211cc0afa3218407" title="src">src</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/tree/master/src" class="js-navigation-open" id="25d902c24283ab8cfbac54dfa101ad31-dfa40b9eb49adfeeeb3c0acb58c236a3e8523b74" title="src">src</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/2960c6de9fd8bfeb7a9d3e81a9436c312ed75ff0" class="message" data-pjax="true" title="patch class css">patch class css</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/b334bdb769b2ccc3c3f4fa43d53c9636504a9b61" class="message" data-pjax="true" title="correct css">correct css</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:40:19Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:45:55Z">Oct 27, 2017</time-ago></span>
           </td>
         </tr>
         <tr class="js-navigation-item">
@@ -689,15 +689,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_cpm.pdf" class="js-navigation-open" id="92c255513ca20c696842c69d24babf82-7830329a0b08219157992c20c55c6afc857e7ac9" title="Help_cpm.pdf">Help_cpm.pdf</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_cpm.pdf" class="js-navigation-open" id="92c255513ca20c696842c69d24babf82-60b4209eb6fa6b4a51bea7d12d7752b7ad91e258" title="Help_cpm.pdf">Help_cpm.pdf</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/390a42b4b56619af4c17dba4886df5179845e5b7" class="message" data-pjax="true" title="create new package">create new package</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/b334bdb769b2ccc3c3f4fa43d53c9636504a9b61" class="message" data-pjax="true" title="correct css">correct css</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:01:50Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:45:55Z">Oct 27, 2017</time-ago></span>
           </td>
         </tr>
         <tr class="js-navigation-item">
@@ -706,15 +706,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_layout.md" class="js-navigation-open" id="6bc7a3548386fb31e3de9a56bb43025d-1f6812be0bce65731abbf1bf83e9fc3fa16506d3" title="Help_layout.md">Help_layout.md</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_layout.md" class="js-navigation-open" id="6bc7a3548386fb31e3de9a56bb43025d-625780e72d4099dfbf8d3babe80ed0cc9ec3887c" title="Help_layout.md">Help_layout.md</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/390a42b4b56619af4c17dba4886df5179845e5b7" class="message" data-pjax="true" title="create new package">create new package</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/b334bdb769b2ccc3c3f4fa43d53c9636504a9b61" class="message" data-pjax="true" title="correct css">correct css</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:01:50Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:45:55Z">Oct 27, 2017</time-ago></span>
           </td>
         </tr>
         <tr class="js-navigation-item">
@@ -723,15 +723,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_layout.pdf" class="js-navigation-open" id="72e5570e9367cd7e0efbc2fdb0f92e8f-71414b5c7f4fc96e9d2840b93ca88190f7f85244" title="Help_layout.pdf">Help_layout.pdf</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_layout.pdf" class="js-navigation-open" id="72e5570e9367cd7e0efbc2fdb0f92e8f-18af0f73a428d5e3c2b55194c0614c2a2996cff7" title="Help_layout.pdf">Help_layout.pdf</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/390a42b4b56619af4c17dba4886df5179845e5b7" class="message" data-pjax="true" title="create new package">create new package</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/b334bdb769b2ccc3c3f4fa43d53c9636504a9b61" class="message" data-pjax="true" title="correct css">correct css</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:01:50Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:45:55Z">Oct 27, 2017</time-ago></span>
           </td>
         </tr>
         <tr class="js-navigation-item">
@@ -740,15 +740,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/package.json" class="js-navigation-open" id="b9cfc7f2cdf78a7f4b91a753d10865a2-2a760220530c74562bbbcb81972dc76b303b1b0f" title="package.json">package.json</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/package.json" class="js-navigation-open" id="b9cfc7f2cdf78a7f4b91a753d10865a2-4367539db511db5087f5199d0f17fffd38582564" title="package.json">package.json</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/56c0aeaa8a95834e0f237ed71f8308d3d0d7ca0e" class="message" data-pjax="true" title="0.1.7">0.1.7</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/467af18313a6817a0354f592c6cd118303184778" class="message" data-pjax="true" title="0.1.8">0.1.8</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:01:49Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T12:41:49Z">Oct 27, 2017</time-ago></span>
           </td>
         </tr>
     </tbody>
@@ -774,7 +774,7 @@
 <div class="footer container-lg px-3" role="contentinfo">
   <div class="position-relative d-flex flex-justify-between py-6 mt-6 f6 text-gray border-top border-gray-light ">
     <ul class="list-style-none d-flex flex-wrap ">
-      <li class="mr-3">&copy; 2017 <span title="0.14218s from unicorn-1284922958-lp60h">GitHub</span>, Inc.</li>
+      <li class="mr-3">&copy; 2017 <span title="0.15176s from unicorn-1284922958-p9s01">GitHub</span>, Inc.</li>
         <li class="mr-3"><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
         <li class="mr-3"><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
         <li class="mr-3"><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>

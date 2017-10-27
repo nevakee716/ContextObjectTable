@@ -521,7 +521,7 @@
       }
     };
     newEvent.initEvent('Post Request', true, true);
-    document.getElementById("cwContextTable").dispatchEvent(newEvent);
+    document.getElementById("cwContextTable" + this.nodeID).dispatchEvent(newEvent);
   };
 
 
