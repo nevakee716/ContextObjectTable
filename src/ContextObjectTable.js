@@ -88,8 +88,14 @@
       $.ajax({
           "url": this.EVODUrl,
           "success": function (res) {
-              callback(res.status);
+            if(res.message) {
               cwApi.notificationManager.addNotification(res.messsage);
+            } else {
+              cwApi.notificationManager.addNotification("Request Successfully Executed");
+            }
+              
+              callback(res.status);
+              
           },
           "crossDomain": true,
           "type": 'POST',

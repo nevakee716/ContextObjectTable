@@ -517,7 +517,7 @@
         self.report.deleted.forEach(function(elem) {elem.edited = "none";});
         self.report.added.forEach(function(elem) {elem.edited = "none";});
         self.report.edited.forEach(function(elem) {elem.edited = "none";});  
-        window.setTimeout(self.reload.bind(this), 500);
+        window.setTimeout(self.reload.bind(this), 300);
       }
     };
     newEvent.initEvent('Post Request', true, true);
@@ -534,7 +534,7 @@
 
   cwContextTable.prototype.reload = function() {
     if (window.location) {
-      window.location = window.location.replace("&cwmode=edit");
+      window.location.href = window.location.href.replace("&cwmode=edit","");
     }
   };
 
