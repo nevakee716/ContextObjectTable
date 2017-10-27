@@ -91,6 +91,7 @@
               callback(res.status);
               cwApi.notificationManager.addNotification(res.messsage);
           },
+          "crossDomain": true,
           "type": 'POST',
           "dataType": "json",
           "data": this.headerRequest
@@ -130,6 +131,7 @@
       this.headerRequest.main = {};
       this.headerRequest.main.id = object.object_id;
       this.headerRequest.main.scriptname = object.objectTypeScriptName;
+      this.headerRequest.main.model = cwApi.mm.getMetaModel().fileName;
       
       this.headerRequest.context = {};
       this.headerRequest.context.scriptname = this.mmNode.ObjectTypeScriptName.toLowerCase();
