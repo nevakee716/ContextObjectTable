@@ -1,7 +1,7 @@
 {
   "name": "ContextObjectTable",
   "description": "Allow you to do complicate stuff",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "main": "cwContextObjectTable.js",
   "scripts": {
     "test": ""
