@@ -426,6 +426,7 @@
       req.ids.push(self.lines[elem.rowID].object_id);
       req.ids.push(self.columns[elem.columnID].object_id);
       req.ids.push(elem.object_id);
+      req.ctxId = elem.ctxId;
       request.push(req);
     });
 
@@ -446,33 +447,33 @@
     if(this.report.added.length > 0) {
       var titleAdded = document.createElement('h3');
       titleAdded.innerText = "Added " + this.cellTitle;
-      container.append(titleAdded);
+      container.appendChild(titleAdded);
       this.report.added.forEach(function(elem) {
         span = document.createElement('span');
         span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.columns[elem.columnID].name;
-        container.append(span);
+        container.appendChild(span);
       });
     }
 
     if(this.report.edited.length > 0) {
       var titleEdited = document.createElement('h3');
       titleEdited.innerText = "Edited " + this.cellTitle;
-      container.append(titleEdited);
+      container.appendChild(titleEdited);
       this.report.edited.forEach(function(elem) {
         span = document.createElement('span');
         span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.columns[elem.columnID].name + "\n";
-        container.append(span);
+        container.appendChild(span);
       });    
     }  
 
     if(this.report.deleted.length > 0) {
       var titleDeleted = document.createElement('h3');
       titleDeleted.innerText = "Deleted " + this.cellTitle;
-      container.append(titleDeleted);
+      container.appendChild(titleDeleted);
       this.report.deleted.forEach(function(elem) {
         span = document.createElement('span');
         span.innerText = elem.label + " # " + self.lines[elem.rowID].name + " # "+ self.columns[elem.columnID].name;
-        container.append(span);
+        container.appendChild(span);
       });       
     }
  
@@ -481,10 +482,10 @@
     if(this.exportObject && this.exportProperty) {
       var titleExport = document.createElement('h3');
       titleExport.innerText = "Export this Table to : ";
-      container.append(titleExport);
+      container.appendChild(titleExport);
       span = document.createElement('span');
       span.innerText = this.exportObject.name + " " + this.exportProperty.name;
-      container.append(span);
+      container.appendChild(span);
     }
 
     var buttonContainer = document.createElement('div');
@@ -497,9 +498,9 @@
     button.innerText = "Submit";
 
     button.addEventListener("click", this.submit.bind(this), false); 
-    buttonContainer.append(button);
+    buttonContainer.appendChild(button);
 
-    container.append(buttonContainer);
+    container.appendChild(buttonContainer);
   
 
 
@@ -508,14 +509,15 @@
 
   cwContextTable.prototype.submit = function() {
     var newEvent = document.createEvent('Event');
+    var self = this;
     newEvent.data = {};
     newEvent.data.postRequest = this.buildPostRequest();
     newEvent.callback = function(sucess) {
       if(sucess) {
-        this.report.deleted.forEach(function(elem) {elem.edited = "none";});
-        this.report.added.forEach(function(elem) {elem.edited = "none";});
-        this.report.edited.forEach(function(elem) {elem.edited = "none";});  
-        window.setTimeout(refresh.bind(this), 200);
+        self.report.deleted.forEach(function(elem) {elem.edited = "none";});
+        self.report.added.forEach(function(elem) {elem.edited = "none";});
+        self.report.edited.forEach(function(elem) {elem.edited = "none";});  
+        window.setTimeout(refresh.bind(this), 500);
       }
     };
     newEvent.initEvent('Post Request', true, true);
