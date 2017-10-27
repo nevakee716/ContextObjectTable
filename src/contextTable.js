@@ -517,7 +517,7 @@
         self.report.deleted.forEach(function(elem) {elem.edited = "none";});
         self.report.added.forEach(function(elem) {elem.edited = "none";});
         self.report.edited.forEach(function(elem) {elem.edited = "none";});  
-        window.setTimeout(refresh.bind(this), 500);
+        window.setTimeout(self.refresh.bind(this), 500);
       }
     };
     newEvent.initEvent('Post Request', true, true);
