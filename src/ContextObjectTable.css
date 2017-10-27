@@ -29,7 +29,7 @@ div.cwContextTable a {
   color: inherit;
 }
 
-div.cwContextTable table tbody tr {
+div.cwContextTable table, div.cwContextTable tbody, div.cwContextTable tr {
   border: #bfbfbf;
 }
 
@@ -72,7 +72,7 @@ div.cwContextTable input{
   text-align: center;
 }
 
-div.cwContextTable table, th, td {
+div.cwContextTable table, div.cwContextTable th, div.cwContextTable td {
    border: 4px solid #2980bc;
 }
 
