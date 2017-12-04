@@ -118,7 +118,7 @@
         if(buttonsEdit.length > 0) {
           buttonsEdit[0].addEventListener("click", this.goToEditMode.bind(this), false);  
         }
-        if(location.hash.includes("cwmode=edit")) {
+        if(location.hash.indexOf("cwmode=edit") !== -1) {
           this.goToEditMode();
         }
         container.addEventListener('Post Request', this.postRequest.bind(this)); 
