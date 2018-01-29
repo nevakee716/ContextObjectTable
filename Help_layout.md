@@ -18,11 +18,11 @@
 
 
 
-  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/frameworks-d7137690e30123bade38abb082ac79f36cc7a105ff92e602405f53b725465cab.css" media="all" rel="stylesheet" />
-  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-eb34444ab70f6147b27f5325cf33d0325161397dd07d7ceddd2b7a0979b91205.css" media="all" rel="stylesheet" />
+  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/frameworks-c9193575f18b28be82c0a963e144ff6fa7a809dd8ae003a1d1e5979bed3f7f00.css" media="all" rel="stylesheet" />
+  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-1214f71e8309b7d4dab489c2765c4de1523517be4c68b861a78d93c8e840648e.css" media="all" rel="stylesheet" />
   
   
-  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/site-cd79f063f6da2fef8de0055aa11c913cc1873486fc05ade3227e0cbcc7a168c6.css" media="all" rel="stylesheet" />
+  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/site-40d3ebebbd14d73c1a2f449e109a016ab13b3ba29987bc4f8eff487787682a7b.css" media="all" rel="stylesheet" />
   
 
   <meta name="viewport" content="width=device-width">
@@ -39,16 +39,17 @@
   
   <meta name="pjax-timeout" content="1000">
   
-  <meta name="request-id" content="5B7B:2ABE:CC9ECD:146B502:59F35D14" data-pjax-transient>
+  <meta name="request-id" content="0D8E:4613:38B957:64488D:5A251D19" data-pjax-transient>
   
 
   <meta name="selected-link" value="repo_source" data-pjax-transient>
 
   <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
 <meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+<meta name="google-site-verification" content="GXs5KoUUkNCoaAZn7wPN-t01Pywp9M3sEjnt_3_ZWPc">
     <meta name="google-analytics" content="UA-3769691-2">
 
-<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url" /><meta content="5B7B:2ABE:CC9ECD:146B502:59F35D14" name="octolytics-dimension-request_id" /><meta content="iad" name="octolytics-dimension-region_edge" /><meta content="iad" name="octolytics-dimension-region_render" />
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url" /><meta content="0D8E:4613:38B957:64488D:5A251D19" name="octolytics-dimension-request_id" /><meta content="iad" name="octolytics-dimension-region_edge" /><meta content="iad" name="octolytics-dimension-region_render" />
 <meta content="/&lt;user-name&gt;/&lt;repo-name&gt;" data-pjax-transient="true" name="analytics-location" />
 
 
@@ -63,12 +64,12 @@
   <meta name="user-login" content="">
 
       <meta name="expected-hostname" content="github.com">
-    <meta name="js-proxy-site-detection-payload" content="MWM4MTQxNmVmYzJjZTAzZjhhNjQ5YmU2MzdmZWZiNzU4YjQxMWExNTAzZjZjMjk2N2FlZDZjMzRkMDJhN2Q1NHx7InJlbW90ZV9hZGRyZXNzIjoiMjEzLjI0NS40NS4xNTQiLCJyZXF1ZXN0X2lkIjoiNUI3QjoyQUJFOkNDOUVDRDoxNDZCNTAyOjU5RjM1RDE0IiwidGltZXN0YW1wIjoxNTA5MTIxMzAwLCJob3N0IjoiZ2l0aHViLmNvbSJ9">
+    <meta name="js-proxy-site-detection-payload" content="ZWIyZDA1NzQzNzhmNjQzOGNiNzc1Y2RlY2ZhNjdmN2VlNGIyYmU3OWFjNzdkNmRmNTkyYWI4Y2NhMTdlNDFjZXx7InJlbW90ZV9hZGRyZXNzIjoiODQuMjMzLjE0NC4xODYiLCJyZXF1ZXN0X2lkIjoiMEQ4RTo0NjEzOjM4Qjk1Nzo2NDQ4OEQ6NUEyNTFEMTkiLCJ0aW1lc3RhbXAiOjE1MTIzODE3MjEsImhvc3QiOiJnaXRodWIuY29tIn0=">
 
 
-  <meta name="html-safe-nonce" content="35b6ff285ed657dd56571cb0486e8e20f89b6739">
+  <meta name="html-safe-nonce" content="b40482637b4bbc57f85653aed00106bc1d1d5a02">
 
-  <meta http-equiv="x-pjax-version" content="5e3e6e73863229649d2baec8b5b31c43">
+  <meta http-equiv="x-pjax-version" content="54c93733751af8f7172595cab85f9b54">
   
 
       <link href="https://github.com/nevakee716/ContextObjectTable/commits/master.atom" rel="alternate" title="Recent Commits to ContextObjectTable:master" type="application/atom+xml">
@@ -87,9 +88,7 @@
   <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
 
   <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#000000">
-  <link rel="icon" type="image/x-icon"
-                   class="js-site-favicon"
-                   href="https://assets-cdn.github.com/favicon.ico">
+  <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico">
 
 <meta name="theme-color" content="#1e2327">
 
@@ -199,10 +198,10 @@
 
 
 
-    <div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav ">
-      <div class="repohead-details-container clearfix container ">
+  <div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav ">
+    <div class="repohead-details-container clearfix container ">
 
-        <ul class="pagehead-actions">
+      <ul class="pagehead-actions">
   <li>
       <a href="/login?return_to=%2Fnevakee716%2FContextObjectTable"
     class="btn btn-sm btn-with-count tooltipped tooltipped-n"
@@ -247,7 +246,7 @@
   </li>
 </ul>
 
-        <h1 class="public ">
+      <h1 class="public ">
   <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"/></svg>
   <span class="author" itemprop="author"><a href="/nevakee716" class="url fn" rel="author">nevakee716</a></span><!--
 --><span class="path-divider">/</span><!--
@@ -255,8 +254,8 @@
 
 </h1>
 
-      </div>
-      
+    </div>
+    
 <nav class="reponav js-repo-nav js-sidenav-container-pjax container"
      itemscope
      itemtype="http://schema.org/BreadcrumbList"
@@ -301,7 +300,7 @@
 </nav>
 
 
-    </div>
+  </div>
 
 <div class="container new-discussion-timeline experiment-repo-nav">
   <div class="repository-content">
@@ -310,7 +309,7 @@
       <div class="signup-prompt-bg rounded-1">
       <div class="signup-prompt p-4 text-center mb-4 rounded-1">
         <div class="position-relative">
-          <!-- '"` --><!-- </textarea></xmp> --></option></form><form accept-charset="UTF-8" action="/site/dismiss_signup_prompt" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="FcCnIt2pgc1noKUE/oMmctRW3hLpfLPbxneJ2eUVLUcoG3P0U6ynkVE03NxX2z72yLsD0SLF2TjY1RMoaRqLeQ==" /></div>
+          <!-- '"` --><!-- </textarea></xmp> --></option></form><form accept-charset="UTF-8" action="/site/dismiss_signup_prompt" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="2aJ1VK9LpQMg1+sTbkqZXbAyaIWtOCjuzc1MhgY45ZQ/8YXPy1KdOgGeuQ3jXuWom4zZjo0JYuf+3TwG5otsgg==" /></div>
             <button type="submit" class="position-absolute top-0 right-0 btn-link link-gray" data-ga-click="(Logged out) Sign up prompt, clicked Dismiss, text:dismiss">
               Dismiss
             </button>
@@ -347,7 +346,7 @@
           <a data-pjax href="/nevakee716/ContextObjectTable/commits/master">
               <svg aria-hidden="true" class="octicon octicon-history" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M8 13H6V6h5v2H8v5zM7 1C4.81 1 2.87 2.02 1.59 3.59L0 2v4h4L2.5 4.5C3.55 3.17 5.17 2.3 7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-.34.03-.67.09-1H.08C.03 7.33 0 7.66 0 8c0 3.86 3.14 7 7 7s7-3.14 7-7-3.14-7-7-7z"/></svg>
               <span class="num text-emphasized">
-                40
+                42
               </span>
               commits
           </a>
@@ -421,7 +420,7 @@
 
   <div class="file-navigation in-mid-page">
 
-    <details class="get-repo-select-menu js-menu-container float-right position-relative dropdown-details">
+    <details class="get-repo-select-menu js-menu-container float-right position-relative dropdown-details details-reset">
   <summary class="btn btn-sm btn-primary">
     Clone or download
     <span class="dropdown-caret"></span>
@@ -555,7 +554,7 @@
 
   
 
-<include-fragment class="commit-tease commit-loader" src="/nevakee716/ContextObjectTable/tree-commit/a388204d333b08d98b781dc4aaf27ef5c962ab9e">
+<include-fragment class="commit-tease commit-loader" src="/nevakee716/ContextObjectTable/tree-commit/23532ad53886f5f90a76cd2452cdc06d2f0fd9f3">
   <div class="blank">
     <img alt="" class="loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32-EAF2F5.gif" width="16" />
     Fetching latest commit…
@@ -568,7 +567,7 @@
 
 <div class="file-wrap">
 
-  <a href="/nevakee716/ContextObjectTable/tree/a388204d333b08d98b781dc4aaf27ef5c962ab9e" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
+  <a href="/nevakee716/ContextObjectTable/tree/23532ad53886f5f90a76cd2452cdc06d2f0fd9f3" class="d-none js-permalink-shortcut" data-hotkey="y">Permalink</a>
 
   <table class="files js-navigation-container js-active-navigation-container" data-pjax>
 
@@ -602,15 +601,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/tree/master/dist" class="js-navigation-open" id="2a6d07eef8b10b84129b42424ed99327-683398cd9d62384c206d8adcb4953768acfdfed8" title="dist">dist</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/tree/master/dist" class="js-navigation-open" id="2a6d07eef8b10b84129b42424ed99327-2dd04d3b3a7c40549244d2990b96d3f3d9a48142" title="dist">dist</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/a388204d333b08d98b781dc4aaf27ef5c962ab9e" class="message" data-pjax="true" title="finalize callback">finalize callback</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/23532ad53886f5f90a76cd2452cdc06d2f0fd9f3" class="message" data-pjax="true" title="correction for ie">correction for ie</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T16:20:23Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-12-04T09:59:01Z">Dec 4, 2017</time-ago></span>
           </td>
         </tr>
         <tr class="js-navigation-item">
@@ -619,15 +618,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/tree/master/src" class="js-navigation-open" id="25d902c24283ab8cfbac54dfa101ad31-f6a9fbbe851c61399b37ec5d6e988fd1f13b89eb" title="src">src</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/tree/master/src" class="js-navigation-open" id="25d902c24283ab8cfbac54dfa101ad31-e55bdac60560b63c8aff47877386c2041b229543" title="src">src</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/a388204d333b08d98b781dc4aaf27ef5c962ab9e" class="message" data-pjax="true" title="finalize callback">finalize callback</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/23532ad53886f5f90a76cd2452cdc06d2f0fd9f3" class="message" data-pjax="true" title="correction for ie">correction for ie</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T16:20:23Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-12-04T09:59:01Z">Dec 4, 2017</time-ago></span>
           </td>
         </tr>
         <tr class="js-navigation-item">
@@ -687,15 +686,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_cpm.pdf" class="js-navigation-open" id="92c255513ca20c696842c69d24babf82-f39498de3cc83f2f683c0d2a0b80defdd6d2530b" title="Help_cpm.pdf">Help_cpm.pdf</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_cpm.pdf" class="js-navigation-open" id="92c255513ca20c696842c69d24babf82-81b410c2c447bea917655366b1fe15a80caaa24a" title="Help_cpm.pdf">Help_cpm.pdf</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/a388204d333b08d98b781dc4aaf27ef5c962ab9e" class="message" data-pjax="true" title="finalize callback">finalize callback</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/23532ad53886f5f90a76cd2452cdc06d2f0fd9f3" class="message" data-pjax="true" title="correction for ie">correction for ie</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T16:20:23Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-12-04T09:59:01Z">Dec 4, 2017</time-ago></span>
           </td>
         </tr>
         <tr class="js-navigation-item">
@@ -704,15 +703,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_layout.md" class="js-navigation-open" id="6bc7a3548386fb31e3de9a56bb43025d-c2220053389d466467e74ade06d643ea7b1151c6" title="Help_layout.md">Help_layout.md</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_layout.md" class="js-navigation-open" id="6bc7a3548386fb31e3de9a56bb43025d-334138aacb0df9ea59c18878711d7056373e29d8" title="Help_layout.md">Help_layout.md</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/a388204d333b08d98b781dc4aaf27ef5c962ab9e" class="message" data-pjax="true" title="finalize callback">finalize callback</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/23532ad53886f5f90a76cd2452cdc06d2f0fd9f3" class="message" data-pjax="true" title="correction for ie">correction for ie</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T16:20:23Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-12-04T09:59:01Z">Dec 4, 2017</time-ago></span>
           </td>
         </tr>
         <tr class="js-navigation-item">
@@ -721,15 +720,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_layout.pdf" class="js-navigation-open" id="72e5570e9367cd7e0efbc2fdb0f92e8f-e23e9a46bf194803fecc116ecfd9215d2bf006d6" title="Help_layout.pdf">Help_layout.pdf</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/Help_layout.pdf" class="js-navigation-open" id="72e5570e9367cd7e0efbc2fdb0f92e8f-76650a8f9e4594991cabe23857cb68218fb37b1d" title="Help_layout.pdf">Help_layout.pdf</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/a388204d333b08d98b781dc4aaf27ef5c962ab9e" class="message" data-pjax="true" title="finalize callback">finalize callback</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/23532ad53886f5f90a76cd2452cdc06d2f0fd9f3" class="message" data-pjax="true" title="correction for ie">correction for ie</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T16:20:23Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-12-04T09:59:01Z">Dec 4, 2017</time-ago></span>
           </td>
         </tr>
         <tr class="js-navigation-item">
@@ -738,15 +737,15 @@
             <img alt="" class="spinner" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
           </td>
           <td class="content">
-            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/package.json" class="js-navigation-open" id="b9cfc7f2cdf78a7f4b91a753d10865a2-01424328189878f0f13b4f11d653ad8a1ca7226f" title="package.json">package.json</a></span>
+            <span class="css-truncate css-truncate-target"><a href="/nevakee716/ContextObjectTable/blob/master/package.json" class="js-navigation-open" id="b9cfc7f2cdf78a7f4b91a753d10865a2-ce383e903995174b0753d526dccdf30c8a119e51" title="package.json">package.json</a></span>
           </td>
           <td class="message">
             <span class="css-truncate css-truncate-target">
-                  <a href="/nevakee716/ContextObjectTable/commit/ea2a2a660d8e65de280490252e3f0775285853e8" class="message" data-pjax="true" title="0.1.13">0.1.13</a>
+                  <a href="/nevakee716/ContextObjectTable/commit/0b6c4f02caf1c9636ec582eaf6a8c9e71a3824ae" class="message" data-pjax="true" title="0.1.14">0.1.14</a>
             </span>
           </td>
           <td class="age">
-            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T16:06:08Z">Oct 27, 2017</time-ago></span>
+            <span class="css-truncate css-truncate-target"><time-ago datetime="2017-10-27T16:21:41Z">Oct 27, 2017</time-ago></span>
           </td>
         </tr>
     </tbody>
@@ -772,7 +771,7 @@
 <div class="footer container-lg px-3" role="contentinfo">
   <div class="position-relative d-flex flex-justify-between py-6 mt-6 f6 text-gray border-top border-gray-light ">
     <ul class="list-style-none d-flex flex-wrap ">
-      <li class="mr-3">&copy; 2017 <span title="0.15919s from unicorn-2445499286-msqrf">GitHub</span>, Inc.</li>
+      <li class="mr-3">&copy; 2017 <span title="0.20491s from unicorn-4067684523-qqsgh">GitHub</span>, Inc.</li>
         <li class="mr-3"><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
         <li class="mr-3"><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
         <li class="mr-3"><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
@@ -806,10 +805,10 @@
   </div>
 
 
-    <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/compat-91f98c37fc84eac24836eec2567e9912742094369a04c4eba6e3cd1fa18902d9.js"></script>
-    <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-90ee08465df40055dba1b6cdf1a92989e00c4f07d805bcbb1c183bf3cc9edaf4.js"></script>
+    <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/compat-e42a8bf9c380758734e39851db04de7cbeeb2f3860efbd481c96ac12c25a6ecb.js"></script>
+    <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-47b737794a7ae33931d1a50a8070fc47204c413c42458a9781430b1de038e39d.js"></script>
     
-    <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-70e0ca6ab008e15517c9cd685bae7a1ea57334cf91f32e8a004ad68641a7d49a.js"></script>
+    <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-0647d5ce32bde5015975c90405f1d805dbcf566a478e812c63169bde934adf00.js"></script>
     
     
     
